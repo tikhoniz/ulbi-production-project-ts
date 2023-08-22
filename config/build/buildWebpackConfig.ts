@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import { buildDevServer } from './buildDevServer';
 import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';
-import { buildResolve } from './buildResolve';
+import { buildResolves } from './buildResolves';
 import { BuildOptions } from './types/config';
 
 export function buildWebpackConfig(
@@ -28,7 +28,7 @@ export function buildWebpackConfig(
 			// в rules конфигурируются лоадеры которые предназначены для обработки файлов которые выходят за рамки javascript, такие как jpg,svg, css, ts
 			rules: buildLoaders(options),
 		},
-		resolve: buildResolve(),
+		resolve: buildResolves(options),
 		devtool: isDev ? 'inline-source-map' : undefined, // в режиме разработки покажет в каком файле ошибка
 		devServer: isDev ? buildDevServer(options) : undefined,
 	};
