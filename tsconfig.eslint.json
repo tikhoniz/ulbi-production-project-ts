@@ -15,6 +15,7 @@
 		"./config/build/buildPlugins.ts",
 		"./config/build/buildResolves.ts",
 		"./config/build/buildWebpackConfig.ts",
+		"./config/jest/jest.config.ts"
 	],
 	"compilerOptions": {
 			"strictNullChecks":true
