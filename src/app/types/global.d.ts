@@ -2,20 +2,19 @@
 
 // включает возможность использовать модули
 declare module '*.scss' {
-	interface IClassNames {
-		[className: string]: string;
-	}
-	const classnames: IClassNames;
-	export = classnames;
+  type IClassNames = Record<string, string>
+  const classnames: IClassNames
+  export = classnames
 }
 
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';
 declare module '*.svg' {
-	import { ReactElement, SVGProps } from 'react';
-	const content: (props: SVGProps<SVGElement>) => ReactElement;
-	export default content;
+  import { type ReactElement, type SVGProps } from 'react'
+  const content: (props: SVGProps<SVGElement>) => ReactElement
+  export default content
 }
 
-declare const __IS_DEV__: boolean;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare const __IS_DEV__: boolean

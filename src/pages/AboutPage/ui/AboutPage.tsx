@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
-const AboutPage = () => {
-	// передаем первым аргументом название файла с переводом
-	const { t } = useTranslation('about');
+const AboutPage = (): JSX.Element => {
+  // передаем первым аргументом название файла с переводом
+  const { t } = useTranslation('about')
 
-	return <div>{t('AboutPage')}</div>;
-};
+  return <div>{t('AboutPage')}</div>
+}
 
-export default AboutPage;
+export default AboutPage
