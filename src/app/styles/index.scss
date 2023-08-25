@@ -1,9 +1,14 @@
-@import url('./reset');
-@import url('variables/global.scss');
-@import url('themes/normal');
-@import url('themes/dark');
+@import 'reset';
+@import 'variables/global';
+@import 'themes/normal';
+@import 'themes/dark';
 
 /* файл для глобальных стилей */
+body {
+  font: var(--font-m);
+  color: var(--primary-color);
+}
+
 .app {
   font: var(--font-m);
   background: var(--bg-color);

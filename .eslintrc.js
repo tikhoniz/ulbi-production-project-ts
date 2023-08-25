@@ -24,11 +24,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    'i18next',
-    '@typescript-eslint'
-  ],
+  plugins: ['react', 'i18next', '@typescript-eslint', 'react-hooks'],
   rules: {
     // отключает правило, требующее обязательный импорт React при использовании JSX.
     'react/react-in-jsx-scope': 'off',
@@ -66,8 +62,21 @@ module.exports = {
     // 'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', { markupOnly: true }],
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/space-before-function-paren': 'warn',
+    indent: 'off',
+    '@typescript-eslint/indent': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'warn'
   },
   globals: {
     __IS_DEV__: true
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 }
