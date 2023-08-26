@@ -1,23 +1,25 @@
 {
-	"extends": "./tsconfig.json",
-	"include": [
-		// 👇️ add all the directories and files
-		// that you want to lint here
-		"src",
-		"tests",
+  "extends": "./tsconfig.json",
+  "include": [
+    // 👇️ add all the directories and files
+    // that you want to lint here
+    "src",
+    "tests",
 
-		// add all files in which you see
-		// the "parserOptions.project" error
-		".eslintrc.js",
-		"webpack.config.ts",
-		"./config/build/buildDevServer.ts",
-		"./config/build/buildLoaders.ts",
-		"./config/build/buildPlugins.ts",
-		"./config/build/buildResolves.ts",
-		"./config/build/buildWebpackConfig.ts",
-		"./config/jest/jest.config.ts"
-	],
-	"compilerOptions": {
-			"strictNullChecks":true
-		}
+    // add all files in which you see
+    // the "parserOptions.project" error
+    ".eslintrc.js",
+    "webpack.config.ts",
+    "./config/build/buildDevServer.ts",
+    "./config/build/buildLoaders.ts",
+    "./config/build/buildPlugins.ts",
+    "./config/build/buildResolves.ts",
+    "./config/build/buildWebpackConfig.ts",
+    "./config/jest/jest.config.ts",
+    "./config/jest/setupTests.ts",
+    "./config/jest/jestEmptyComponent.tsx"
+  ],
+  "compilerOptions": {
+    "strictNullChecks": true
+  }
 }

@@ -1,9 +1,14 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpack'
+import {
+  DefinePlugin,
+  ProgressPlugin,
+  type WebpackPluginInstance
+} from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { type BuildOptions } from './types/config'
 
-export function buildPlugins ({
+export function buildPlugins({
   paths,
   isDev
 }: BuildOptions): WebpackPluginInstance[] {
@@ -23,6 +28,9 @@ export function buildPlugins ({
     // позволяет прокидывать глобальные переменные в код
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev)
-    })
+    }),
+    // плагин для анализа размера бандла, флаг openAnalyzer: false, чтобы каждый раз не открывался при запуске
+    // Webpack Bundle Analyzer is started at http://127.0.0.1:8888
+    new BundleAnalyzerPlugin({ openAnalyzer: false })
   ]
 }
