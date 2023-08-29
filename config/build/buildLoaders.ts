@@ -1,8 +1,8 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { type RuleSetRule } from 'webpack'
+import { buildCssLoader } from './loaders/buildCssLoader'
 import { type BuildOptions } from './types/config'
 
-export function buildLoaders ({ isDev }: BuildOptions): RuleSetRule[] {
+export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff|woff2)$/i,
     use: [
@@ -17,30 +17,7 @@ export function buildLoaders ({ isDev }: BuildOptions): RuleSetRule[] {
     use: ['@svgr/webpack']
   }
 
-  const cssLoader = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      // Creates `style` nodes from js strings
-      // если в режиме разработки то минимизацию не использовать
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      // Translates CSS into CommonJS
-      // конфигурация для использования css модулей
-      {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            // если в именовании присутствует '.module.' применяется модульный подход
-            auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-            // при dev разработки название оставлять читабельными
-            // '[hash:base64:8]' - восьмерка указывает на количество знаков в хеше
-            localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
-          }
-        }
-      },
-      // Compiles Sass to CSS
-      'sass-loader'
-    ]
-  }
+  const cssLoader = buildCssLoader(isDev)
 
   // если не использовать typescript - нужен babel-loader
   const typescriptLoader = {

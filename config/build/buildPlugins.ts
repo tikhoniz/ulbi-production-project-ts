@@ -8,7 +8,7 @@ import {
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { type BuildOptions } from './types/config'
 
-export function buildPlugins({
+export function buildPlugins ({
   paths,
   isDev
 }: BuildOptions): WebpackPluginInstance[] {

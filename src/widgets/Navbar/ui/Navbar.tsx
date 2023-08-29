@@ -1,6 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classnames'
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import cls from './Navbar.module.scss'
+import { Button, ThemeButton } from 'shared/ui/Button/Button'
 
 interface NavbarProps {
   className?: string
