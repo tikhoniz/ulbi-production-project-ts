@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-webpack5'
 import path from 'path'
-import { RuleSetRule } from 'webpack'
+import type { RuleSetRule } from 'webpack'
 import { buildSvgLoader } from '../../config/build/loaders/buildSvgLoader'
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 
@@ -25,7 +25,7 @@ const config: StorybookConfig = {
     // disable whatever is already set to load SVGs
     // фильтруем правила содержащие svg и отключаем его
     config.module.rules
-      .filter((rule: RuleSetRule) => /svg/.test(rule.test as string))
+      .filter((rule: RuleSetRule) => rule?.test?.toString().includes('svg'))
       .forEach((rule: RuleSetRule) => (rule.exclude = /\.svg$/i))
     // добавляем в массив правил обработчик svg
     config.module.rules.push(buildSvgLoader())
