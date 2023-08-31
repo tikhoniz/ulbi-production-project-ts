@@ -8,11 +8,11 @@ import {
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { type BuildOptions } from './types/config'
 
-export function buildPlugins ({
+export function buildPlugins({
   paths,
   isDev
 }: BuildOptions): WebpackPluginInstance[] {
-  return [
+  const plugins = [
     // переносит index.html в папку build
     new HtmlWebpackPlugin({
       template: paths.html
@@ -28,9 +28,13 @@ export function buildPlugins ({
     // позволяет прокидывать глобальные переменные в код
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev)
-    }),
-    // плагин для анализа размера бандла, флаг openAnalyzer: false, чтобы каждый раз не открывался при запуске
-    // Webpack Bundle Analyzer is started at http://127.0.0.1:8888
-    new BundleAnalyzerPlugin({ openAnalyzer: false })
+    })
   ]
+  // добавляем плагин BundleAnalyzerPlugin только при разработке, для того чтобы при сборке в
+  // CI в гите сборка собиралась
+  // плагин BundleAnalyzerPlugin для анализа размера бандла, флаг openAnalyzer: false, чтобы каждый раз не открывался при запуске
+  // Webpack Bundle Analyzer is started at http://127.0.0.1:8888
+  if (isDev) plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }))
+
+  return plugins
 }
