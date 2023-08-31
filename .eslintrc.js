@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['standard-with-typescript', 'plugin:react/recommended', 'plugin:i18next/recommended', 'plugin:storybook/recommended', 'plugin:storybook/recommended'],
+  extends: ['standard-with-typescript', 'plugin:react/recommended', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
   overrides: [
     {
       env: {
@@ -61,7 +61,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'space-before-function-paren': 'off',
-    '@typescript-eslint/space-before-function-paren': 'warn',
+    '@typescript-eslint/space-before-function-paren': 'off',
     indent: 'off',
     '@typescript-eslint/indent': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',

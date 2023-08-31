@@ -1,22 +1,14 @@
+// Button.stories.ts|tsx
 import type { Meta, StoryObj } from '@storybook/react'
-
 import { Button, ThemeButton } from './Button'
 
-const meta = {
-  title: 'shared/Button',
+const meta: Meta<typeof Button> = {
   component: Button,
-  parameters: {
-    layout: 'centered'
-  },
-  tags: ['autodocs'],
-  argTypes: {
-    //backgroundColor: { control: 'color' }
-  }
-} satisfies Meta<typeof Button>
+  title: 'shared/Button'
+}
 
 export default meta
-
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof Button>
 
 export const Primary: Story = {
   args: {

@@ -1,6 +1,7 @@
 import { type RuleSetRule } from 'webpack'
 import { buildCssLoader } from './loaders/buildCssLoader'
 import { type BuildOptions } from './types/config'
+import { buildSvgLoader } from './loaders/buildSvgLoader'
 
 export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   const fileLoader = {
@@ -11,15 +12,11 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
       }
     ]
   }
-
-  const svgLoader = {
-    test: /\.svg$/,
-    use: ['@svgr/webpack']
-  }
-
+  // подключение загрузчика SVG
+  const svgLoader = buildSvgLoader()
+  // подключение загрузчика стилей
   const cssLoader = buildCssLoader(isDev)
-
-  // если не использовать typescript - нужен babel-loader
+  // если не использовать typescript лоадер - нужен babel-loader
   const typescriptLoader = {
     // лоадер для typescript
     test: /\.tsx?$/, // регулярное выражение по которому webpack будет находить файлы которые необходимо пропустить через лоадер
