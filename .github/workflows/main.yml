@@ -1,5 +1,6 @@
 name: linting, testing, building
 on:
+  workflow_dispatch:
   push:
     branches: [master]
   pull_request:
