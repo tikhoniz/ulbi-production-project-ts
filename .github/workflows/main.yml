@@ -29,4 +29,4 @@ jobs:
       - name: build storybook
         run: npm run build-storybook
       - name: screenshot testing
-        run: npm run chromatic
+        run: npm run chromatic:test

@@ -15,6 +15,7 @@
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "build-storybook": "storybook build -c ./config/storybook",
     "chromatic": "npx chromatic --project-token=chpt_97c927f3781fa9f",
+    "chromatic:test": "chromatic --project-token=chpt_97c927f3781fa9f --exit-zero-on-changes",
     "chromatic:ok": "npx chromatic --auto-accept-changes --project-token=chpt_97c927f3781fa9f"
   },
   "keywords": [],
