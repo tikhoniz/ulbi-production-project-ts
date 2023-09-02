@@ -28,4 +28,5 @@ jobs:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: storybook:build
+          # 👇 проверка падает если есть расхождение, что бы в любом случае проверка прошла установить true
           exitZeroOnChanges: false

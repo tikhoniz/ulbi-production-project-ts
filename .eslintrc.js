@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['standard-with-typescript', 'plugin:react/recommended', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'standard-with-typescript',
+    'plugin:react/recommended',
+    'plugin:i18next/recommended',
+    'plugin:storybook/recommended'
+  ],
   overrides: [
     {
       env: {
@@ -65,7 +70,8 @@ module.exports = {
     indent: 'off',
     '@typescript-eslint/indent': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'warn'
+    '@typescript-eslint/explicit-function-return-type': 'warn',
+    'multiline-ternary': 'off'
   },
   globals: {
     __IS_DEV__: true
