@@ -1,7 +1,7 @@
 # .github/workflows/chromatic.yml
 
 # Workflow name
-name: 'Chromatic'
+name: 'Test for visual regressions in components. Chromatic.'
 
 # Event for the workflow
 on:

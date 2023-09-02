@@ -1,9 +1,14 @@
-name: linting, testing, building
+# .github/workflows/chromatic.yml
+
+# Workflow name
+name: Linting, Testing, Building
+# Event for the workflow
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+# List of jobs
 jobs:
   pipeline:
     runs-on: ubuntu-latest
