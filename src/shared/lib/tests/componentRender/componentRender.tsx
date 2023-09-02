@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, type RenderResult } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter } from 'react-router-dom'
@@ -8,7 +8,10 @@ export interface componentRenderOptions {
   route?: string
 }
 
-export function componentRender(component: ReactNode, options: componentRenderOptions = {}) {
+export function componentRender(
+  component: ReactNode,
+  options: componentRenderOptions = {}
+): RenderResult {
   const { route = '/' } = options
 
   return render(
