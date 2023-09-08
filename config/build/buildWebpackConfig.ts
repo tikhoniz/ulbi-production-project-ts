@@ -5,10 +5,10 @@ import { buildPlugins } from './buildPlugins'
 import { buildResolves } from './buildResolves'
 import { type BuildOptions } from './types/config'
 
-export function buildWebpackConfig(
-  options: BuildOptions
-): webpack.Configuration {
+export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
   const { paths, mode, isDev } = options
+
+  console.log(buildDevServer(options))
 
   return {
     // development указывается на стадии разработки, при production webpack минимизирует код
@@ -33,5 +33,6 @@ export function buildWebpackConfig(
     devtool: isDev ? 'inline-source-map' : undefined,
     // в режиме разработки поднимает сервер webpack
     devServer: isDev ? buildDevServer(options) : undefined
+    // devServer: { port: 9000, open: true, historyApiFallback: true, hot: true }
   }
 }

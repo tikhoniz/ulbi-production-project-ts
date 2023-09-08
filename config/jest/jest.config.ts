@@ -1,4 +1,4 @@
-/**
+/*
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
@@ -7,6 +7,36 @@ import type { Config } from 'jest'
 import path from 'path'
 
 const config: Config = {
+  // A set of global variables that need to be available in all test environments
+  globals: { __IS_DEV__: true },
+  // Automatically clear mock calls, instances, contexts and results before every test
+  clearMocks: true,
+  coveragePathIgnorePatterns: ['/node_modules/'],
+  // An array of directory names to be searched recursively up from the requiring module's location
+  // moduleDirectories: ['node_modules'],
+  moduleDirectories: ['node_modules'],
+  // modulePaths: ['<rootDir>src'],
+  modulePaths: ['<rootDir>/src'],
+  // An array of file extensions your modules use
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
+  // The root directory that Jest should scan for tests and modules within
+  rootDir: '../../',
+  // A list of paths to directories that Jest should use to search for files in
+  // roots: ['<rootDir>/src'],
+  // The test environment that will be used for testing
+  testEnvironment: 'jsdom',
+  // The glob patterns Jest uses to detect test files
+  // testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
+  testMatch: [
+    // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
+    '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
+  ],
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
+  }
+
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -15,35 +45,6 @@ const config: Config = {
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "/private/var/folders/97/15b37ww96pd5cp277zjfqr140000gn/T/jest_dx",
-
-  // Automatically clear mock calls, instances, contexts and results before every test
-  clearMocks: true,
-  coveragePathIgnorePatterns: ['/node_modules/'],
-  // An array of directory names to be searched recursively up from the requiring module's location
-  moduleDirectories: ['node_modules'],
-  modulePaths: ['<rootDir>src'],
-  // An array of file extensions your modules use
-  moduleFileExtensions: [
-    'js',
-    'mjs',
-    'cjs',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node'
-  ],
-  // The root directory that Jest should scan for tests and modules within
-  rootDir: '../../',
-  // The test environment that will be used for testing
-  testEnvironment: 'jsdom',
-  // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
-  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
-  moduleNameMapper: {
-    '\\.s?css$': 'identity-obj-proxy',
-    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
-  }
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -90,9 +91,6 @@ const config: Config = {
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
 
-  // A set of global variables that need to be available in all test environments
-  // globals: {},
-
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
 
@@ -128,11 +126,6 @@ const config: Config = {
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
-
-  // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
