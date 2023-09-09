@@ -2,13 +2,11 @@ import type webpack from 'webpack'
 import { buildDevServer } from './buildDevServer'
 import { buildLoaders } from './buildLoaders'
 import { buildPlugins } from './buildPlugins'
-import { buildResolves } from './buildResolves'
+import { buildResolvers } from './buildResolvers'
 import { type BuildOptions } from './types/config'
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
   const { paths, mode, isDev } = options
-
-  console.log(buildDevServer(options))
 
   return {
     // development указывается на стадии разработки, при production webpack минимизирует код
@@ -28,7 +26,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       // в rules конфигурируются лоадеры которые предназначены для обработки файлов которые выходят за рамки javascript, такие как jpg,svg, css, ts
       rules: buildLoaders(options)
     },
-    resolve: buildResolves(options),
+    resolve: buildResolvers(options),
     // в режиме разработки покажет в каком файле ошибка
     devtool: isDev ? 'inline-source-map' : undefined,
     // в режиме разработки поднимает сервер webpack

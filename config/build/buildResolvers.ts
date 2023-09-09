@@ -1,7 +1,7 @@
 import { type ResolveOptions } from 'webpack'
 import { type BuildOptions } from './types/config'
 
-export function buildResolves (options: BuildOptions): ResolveOptions {
+export function buildResolvers(options: BuildOptions): ResolveOptions {
   return {
     // позволяет писать экспорты без разрешения
     extensions: ['.tsx', '.ts', '.js'],

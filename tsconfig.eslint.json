@@ -12,7 +12,7 @@
     "./config/build/buildDevServer.ts",
     "./config/build/buildLoaders.ts",
     "./config/build/buildPlugins.ts",
-    "./config/build/buildResolves.ts",
+    "./config/build/buildResolvers.ts",
     "./config/build/buildWebpackConfig.ts",
     "./config/jest/jest.config.ts",
     "./config/jest/setupTests.ts",
