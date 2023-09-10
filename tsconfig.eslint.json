@@ -18,7 +18,8 @@
     "./config/jest/setupTests.ts",
     "./config/jest/jestEmptyComponent.tsx",
     "./config/storybook/main.ts",
-    "./config/storybook/preview.ts"
+    "./config/storybook/preview.ts",
+    "./json-server/index.js"
   ],
   "compilerOptions": {
     "strictNullChecks": true
