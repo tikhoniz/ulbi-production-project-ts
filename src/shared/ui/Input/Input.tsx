@@ -1,0 +1,37 @@
+/* eslint-disable react/display-name */
+import { memo, type ChangeEvent, type InputHTMLAttributes } from 'react'
+import { classNames } from 'shared/lib/classNames/classnames'
+import cls from './Input.module.scss'
+
+// Omit позволяет забрать из типа все пропсы и исключить которые не нужны
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+
+interface InputProps extends HTMLInputProps {
+  className?: string
+  value: string
+  type: string
+  onChange: (value: string) => void
+  autofocus?: boolean
+}
+
+export const Input = memo((props: InputProps): JSX.Element => {
+  const { className, value, onChange, type = 'text', autofocus = false, ...otherProps } = props
+
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
+    // т.к. onChange не обязательный нужно применить опшинал чейнинг, если пропс onChange не передан функция вызвана не будет
+    onChange?.(event.target.value)
+  }
+
+  return (
+    <div className={classNames(cls.Input, {}, [className])}>
+      <input
+        autoFocus={autofocus}
+        type={type}
+        value={value}
+        onChange={onChangeHandler}
+        className={cls.input}
+        {...otherProps}
+      />
+    </div>
+  )
+})

@@ -3,8 +3,13 @@ import path from 'path'
 import { DefinePlugin, type RuleSetRule } from 'webpack'
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader'
+import type { BuildPaths } from '../build/types/config'
 
 const config: StorybookConfig = {
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
+  },
   stories: ['../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
@@ -12,10 +17,6 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions'
   ],
-  framework: {
-    name: '@storybook/react-webpack5',
-    options: {}
-  },
   docs: {
     autodocs: 'tag'
   },
@@ -24,10 +25,16 @@ const config: StorybookConfig = {
     __IS_DEV__: 'true'
   }),
   webpackFinal: async (config, { configType }) => {
+    const paths: BuildPaths = {
+      build: '',
+      html: '',
+      entry: '',
+      src: path.resolve(__dirname, '..', '..', 'src')
+    }
+    config?.resolve?.modules?.push(paths.src)
+    config?.resolve?.extensions?.push('.ts', '.tsx')
     //! выяснить правильный тип
     const rules: any = config?.module?.rules
-
-    config?.resolve?.modules?.push(path.resolve(__dirname, '..', '..', 'src'))
     rules.push(buildCssLoader(true))
     // фильтруем правила содержащие svg и отключаем его
     rules

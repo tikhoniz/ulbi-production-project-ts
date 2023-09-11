@@ -7,7 +7,6 @@ import { type BuildOptions } from './types/config'
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
   const { paths, mode, isDev } = options
-
   return {
     // development указывается на стадии разработки, при production webpack минимизирует код
     mode,

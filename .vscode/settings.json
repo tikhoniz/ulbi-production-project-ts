@@ -12,7 +12,8 @@
     "liks",
     "reduxjs",
     "stylelint",
-    "testid"
+    "testid",
+    "typicode"
   ],
   "cSpell.language": "en,ru,en-US,ru-RU"
 }

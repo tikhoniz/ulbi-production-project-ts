@@ -1,11 +1,13 @@
+import type { DeepPartial } from '@reduxjs/toolkit'
+import type { StateSchema } from 'app/providers/StoreProvider'
 import { getCounter } from './getCounter'
 
 describe('getCounter', () => {
   // проверяем, что из стейта нам возвращается та часть стейта которая нужна, в данном случае значение счетчика
   test('should return counter value', () => {
-    const state = {
+    const state: DeepPartial<StateSchema> = {
       counter: { value: 10 }
     }
-    expect(getCounter(state)).toEqual({ value: 10 })
+    expect(getCounter(state as StateSchema)).toEqual({ value: 10 })
   })
 })
