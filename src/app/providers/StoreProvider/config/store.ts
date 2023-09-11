@@ -1,6 +1,6 @@
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
 import type { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { userReducer } from 'entities/User'
+import { userReducer } from '../../../../entities/User'
 import { counterReducer } from '../../../../entities/Counter'
 import type { StateSchema } from './StateSchema'
 
