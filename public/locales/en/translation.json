@@ -5,5 +5,10 @@
 	"PageError": "Something went wrong",
 	"refreshPage": "refresh the page",
 	"toggle": "Toggle",
-	"login": "Login"
+	"login": "Login",
+	"logout": "Logout",
+	"authform": "Authorization form",
+	"errors": {
+		"wrong_name_or_pass": "Incorrect username or password"
+	}
 }

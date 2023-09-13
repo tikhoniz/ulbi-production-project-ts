@@ -2,35 +2,24 @@
 const fs = require('fs')
 const jsonServer = require('json-server')
 const path = require('path')
-
 const server = jsonServer.create()
-
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'))
+const middlewares = jsonServer.defaults()
 
-server.use(jsonServer.defaults({}))
+server.use(middlewares)
 server.use(jsonServer.bodyParser)
 
-// Мидлвэйр нужен для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
+// Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
 server.use(async (req, res, next) => {
-  await new Promise(resolve => {
-    setTimeout(resolve, 800)
+  console.log('Promise')
+  // eslint-disable-next-line promise/param-names
+  await new Promise(res => {
+    setTimeout(res, 800)
   })
   next()
 })
 
-// проверяем, авторизован ли пользователь
-// eslint-disable-next-line
-server.use((req, res, next) => {
-  if (!req.headers.authorization) {
-    return res.status(403).json({ message: 'AUTH ERROR' })
-  }
-
-  next()
-})
-
-server.use(router)
-
-// эндпоинт для логина
+// Эндпоинт для логина
 server.post('/login', (req, res) => {
   try {
     const { username, password } = req.body
@@ -46,9 +35,22 @@ server.post('/login', (req, res) => {
     return res.status(403).json({ message: 'User not found' })
   } catch (e) {
     console.log(e)
+
     return res.status(500).json({ message: e.message })
   }
 })
+
+// проверяем, авторизован ли пользователь
+// eslint-disable-next-line
+server.use((req, res, next) => {
+  if (!req.headers.authorization) {
+    return res.status(403).json({ message: 'AUTH ERROR' })
+  }
+
+  next()
+})
+
+server.use(router)
 
 // запуск сервера
 server.listen(8000, () => {

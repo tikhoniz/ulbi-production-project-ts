@@ -61,6 +61,7 @@ module.exports = {
     // 'no-shadow': 'off',
     // 'import/extensions': 'off',
     // 'import/no-extraneous-dependencies': 'off',
+    'react/display-name': 'off',
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', { markupOnly: true }],
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks

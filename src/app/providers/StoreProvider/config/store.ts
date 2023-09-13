@@ -1,23 +1,25 @@
-import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
-import type { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { loginReducer } from 'features/AuthByUsername'
+import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { userReducer } from '../../../../entities/User'
-import { counterReducer } from '../../../../entities/Counter'
-import type { StateSchema } from './StateSchema'
 
-export function createReduxStore(initialState?: StateSchema): ToolkitStore {
-  const rootReducers: ReducersMapObject<StateSchema> = {
-    counter: counterReducer,
-    user: userReducer
-  }
+const rootReducer = combineReducers({
+  userReducer,
+  loginReducer
+})
 
-  return configureStore<StateSchema>({
-    reducer: rootReducers,
+export function createReduxStore(initialState: any) {
+  return configureStore({
+    reducer: rootReducer,
     devTools: __IS_DEV__,
     preloadedState: initialState
   })
 }
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-// export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof store.dispatch
+// типизация
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof createReduxStore>
+export type AppDispatch = AppStore['dispatch']
+// hook для диспача изменений
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
