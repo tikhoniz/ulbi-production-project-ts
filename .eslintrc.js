@@ -43,7 +43,7 @@ module.exports = {
     // тех местах, где компилятор TypeScript разрешает их использование, но они не обрабатываются
     // должным образом
     '@typescript-eslint/no-misused-promises': 'off',
-    '@typescript-eslint/strict-boolean-expressions': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
     // semi: 'on',
     // '@typescript-eslint/semi': 'error',
     // indent: [2, 4],
