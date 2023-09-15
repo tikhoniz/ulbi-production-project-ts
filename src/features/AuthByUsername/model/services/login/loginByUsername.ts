@@ -11,12 +11,12 @@ interface LoginByUsernameProps {
 }
 
 export const loginByUsername = createAsyncThunk<
-// дженерик, то что возвращаем
-User,
-// дженерик, аргумент ожидаемый на вход
-LoginByUsernameProps,
-// третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
-{ rejectValue: string }
+  // дженерик, то что возвращаем
+  User,
+  // дженерик, аргумент ожидаемый на вход
+  LoginByUsernameProps,
+  // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
+  { rejectValue: string }
 >('login/loginByUsername', async (authData, thunkAPI) => {
   try {
     const response = await axios.post<User>('http://localhost:8000/login', authData)

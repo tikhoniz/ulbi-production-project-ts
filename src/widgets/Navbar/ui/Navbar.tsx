@@ -14,7 +14,7 @@ interface NavbarProps {
 export const Navbar = ({ className }: NavbarProps): JSX.Element => {
   const { t } = useTranslation()
   const [isAuthModal, setAuthModal] = useState(false)
-  const { authData } = useAppSelector(state => state.userReducer)
+  const { authData } = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
 
   const onCloseModal = useCallback((): void => {
@@ -53,10 +53,12 @@ export const Navbar = ({ className }: NavbarProps): JSX.Element => {
       >
         {t('login')}
       </Button>
-      <LoginModal
-        isOpen={isAuthModal}
-        onClose={onCloseModal}
-      />
+      {isAuthModal && (
+        <LoginModal
+          isOpen={isAuthModal}
+          onClose={onCloseModal}
+        />
+      )}
     </div>
   )
 }

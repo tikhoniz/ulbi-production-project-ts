@@ -16,18 +16,18 @@ type Story = StoryObj<typeof Navbar>
 export const Light: Story = {
   args: {}
 }
-Light.decorators = [
-  StoreDecorator({
-    loginReducer: { username: 'admin', password: '123' }
-  })
-]
+Light.decorators = [StoreDecorator({})]
 
 export const Dark: Story = {
   args: {}
 }
-Dark.decorators = [
+Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)]
+
+export const AuthNavbar: Story = {
+  args: {}
+}
+AuthNavbar.decorators = [
   StoreDecorator({
-    loginReducer: { username: 'admin', password: '123' }
-  }),
-  ThemeDecorator(Theme.DARK)
+    userReducer: { authData: { id: '1', username: 'admin' } }
+  })
 ]
