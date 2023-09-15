@@ -33,7 +33,7 @@ export function createReducerManager(
     },
     // Добавляет новый редьюсер с указанным ключом
     add: (key: StateSchemaKey, reducer: Reducer) => {
-      if (!key || !reducers[key]) {
+      if (!key || reducers[key]) {
         return
       }
       // Add the reducer to the reducer mapping

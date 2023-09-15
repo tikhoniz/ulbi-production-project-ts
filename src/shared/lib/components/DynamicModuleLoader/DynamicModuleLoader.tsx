@@ -5,12 +5,11 @@ import { useAppDispatch } from 'app/providers/StoreProvider/config/store'
 import { useEffect, type FC } from 'react'
 import { useStore } from 'react-redux'
 
-// список на случай нескольких редьюсеров
+// список на случай передачи нескольких редьюсеров
 export type ReducersList = {
   [keyName in StateSchemaKey]?: Reducer
 }
-
-type ReducersListEntry = [StateSchemaKey, Reducer]
+export type ReducersListEntry = [StateSchemaKey, Reducer]
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface DynamicModuleLoaderProps {

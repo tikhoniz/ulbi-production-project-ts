@@ -14,20 +14,20 @@ type Story = StoryObj<typeof LoginForm>
 export const Primary: Story = {}
 Primary.decorators = [
   StoreDecorator({
-    loginReducer: { username: 'admin', password: '123' }
+    loginForm: { username: 'admin', password: '123' }
   })
 ]
 
 export const WithError: Story = {}
 WithError.decorators = [
   StoreDecorator({
-    loginReducer: { username: '123', password: 'asd', error: 'Error' }
+    loginForm: { username: '123', password: 'asd', error: 'Error' }
   })
 ]
 
 export const Loading: Story = {}
 Loading.decorators = [
   StoreDecorator({
-    loginReducer: { isLoading: true }
+    loginForm: { isLoading: true }
   })
 ]
