@@ -43,7 +43,6 @@ export function createReduxStore(
 
   return store
 }
-
 // типизация
 export type RootState = ReturnType<typeof reducerManager.reduce>
 export type AppStore = ReturnType<typeof createReduxStore>['dispatch']

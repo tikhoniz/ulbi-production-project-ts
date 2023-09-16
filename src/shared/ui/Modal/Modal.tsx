@@ -78,7 +78,7 @@ export const Modal = (props: ModalProps): JSX.Element => {
   }
 
   // если флаг isMounted в состоянии false, вернуть null
-  if ((lazy ?? false) && !isMounted) {
+  if (lazy && !isMounted) {
     return null
   }
 

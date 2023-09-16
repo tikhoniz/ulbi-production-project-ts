@@ -1,5 +1,7 @@
 /* eslint-disable spaced-comment */
 import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider/config/store'
+import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword'
+import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername'
 import { loginByUsername } from 'features/AuthByUsername/model/services/login/loginByUsername'
 import { loginActions, loginReducer } from 'features/AuthByUsername/model/slice/loginSlice'
 import { memo, useCallback } from 'react'
@@ -13,6 +15,8 @@ import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import cls from './LoginForm.module.scss'
+import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading'
+import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
 
 interface LoginFormProps {
   className?: string
@@ -25,10 +29,10 @@ const initialReducers: ReducersList = {
 export const LoginForm = memo(({ className }: LoginFormProps): JSX.Element => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const username = useAppSelector(state => state?.loginForm?.username ?? '')
-  const password = useAppSelector(state => state?.loginForm?.password ?? '')
-  const error = useAppSelector(state => state?.loginForm?.error ?? '')
-  const isLoading = useAppSelector(state => state?.loginForm?.isLoading ?? false)
+  const username = useAppSelector(getLoginUsername)
+  const password = useAppSelector(getLoginPassword)
+  const error = useAppSelector(getLoginError)
+  const isLoading = useAppSelector(getLoginIsLoading)
 
   const onChangeUsername = useCallback(
     (value: string): void => {
