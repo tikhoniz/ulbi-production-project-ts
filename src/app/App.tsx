@@ -1,11 +1,11 @@
 import { useTheme } from 'app/providers/ThemeProvider'
-import { userActions } from '../entities/User'
 import { Suspense, useEffect } from 'react'
 import { classNames } from 'shared/lib/classNames/classnames'
 import { Navbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
-import { useAppDispatch } from './providers/StoreProvider/config/store'
+import { userActions } from '../entities/User'
 import { AppRouter } from './providers/router'
+import { useAppDispatch } from './providers/StoreProvider'
 
 const App = (): JSX.Element => {
   const { theme } = useTheme()

@@ -1,5 +1,7 @@
 /* eslint-disable spaced-comment */
-import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider/config/store'
+import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider'
+import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
+import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading'
 import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword'
 import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername'
 import { loginByUsername } from 'features/AuthByUsername/model/services/login/loginByUsername'
@@ -15,18 +17,17 @@ import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import cls from './LoginForm.module.scss'
-import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading'
-import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
 
 interface LoginFormProps {
   className?: string
+  onSuccess: () => void
 }
 
 const initialReducers: ReducersList = {
   loginForm: loginReducer
 }
 
-export const LoginForm = memo(({ className }: LoginFormProps): JSX.Element => {
+export const LoginForm = memo(({ className, onSuccess }: LoginFormProps): JSX.Element => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const username = useAppSelector(getLoginUsername)
@@ -48,15 +49,19 @@ export const LoginForm = memo(({ className }: LoginFormProps): JSX.Element => {
     [dispatch]
   )
 
-  const onLoginClick = useCallback(() => {
-    void dispatch(loginByUsername({ username, password }))
-  }, [dispatch, password, username])
+  const onLoginClick = useCallback(async () => {
+    const result = await dispatch(loginByUsername({ username, password }))
+    if (result.meta.requestStatus === 'fulfilled') {
+      onSuccess()
+    }
+  }, [dispatch, password, username, onSuccess])
 
   return (
     // DynamicModuleLoader позволяет вынести часть логики в переиспользуемый компонент, в данном случае асинхронное удаление и добавление редьюсера
     <DynamicModuleLoader
-      removeAfterUnmount={true}
       reducers={initialReducers}
+      // удаляем редьюсеры если ушли со страницы
+      removeAfterUnmount
     >
       <div className={classNames(cls.LoginForm, {}, [className])}>
         <Text title={t('authform')} />

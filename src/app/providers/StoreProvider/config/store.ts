@@ -1,12 +1,5 @@
-import {
-  configureStore,
-  type AnyAction,
-  type ReducersMapObject,
-  type ThunkDispatch
-} from '@reduxjs/toolkit'
+import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
 import { type ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { type Dispatch } from 'react'
-import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux'
 import { type ReducersListEntry } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { userReducer } from '../../../../entities/User'
 import { type StateSchema } from './StateSchema'
@@ -46,8 +39,3 @@ export function createReduxStore(
 // типизация
 export type RootState = ReturnType<typeof reducerManager.reduce>
 export type AppStore = ReturnType<typeof createReduxStore>['dispatch']
-
-// hook для диспача изменений
-export const useAppDispatch = (): ThunkDispatch<StateSchema, undefined, AnyAction> &
-  Dispatch<AnyAction> => useDispatch<AppStore>()
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

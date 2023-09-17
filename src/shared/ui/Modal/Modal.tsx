@@ -27,7 +27,7 @@ export const Modal = (props: ModalProps): JSX.Element => {
 
   // устанавливает флаг когда вмонтировано модальное окно
   useEffect(() => {
-    if (isOpen ?? false) {
+    if (isOpen) {
       setIsMounted(true)
     }
   }, [isOpen])
@@ -35,7 +35,7 @@ export const Modal = (props: ModalProps): JSX.Element => {
   // останавливаем всплытие события и срабатывание клика при нажатии на модальное окно
   // теперь при нажатии на само модальное окно оно не закроется
   const closeHandler = useCallback((): void => {
-    if (onClose != null) {
+    if (onClose) {
       setIsClosing(true)
       timerRef.current = setTimeout(() => {
         onClose()
@@ -61,7 +61,7 @@ export const Modal = (props: ModalProps): JSX.Element => {
   }
 
   useEffect(() => {
-    if (isOpen ?? false) {
+    if (isOpen) {
       window.addEventListener('keydown', onKeyDown)
     }
 

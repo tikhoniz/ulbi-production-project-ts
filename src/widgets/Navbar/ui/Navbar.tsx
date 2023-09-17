@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider/config/store'
 import { LoginModal } from 'features/AuthByUsername'
-import { useCallback, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classnames'
+import { useAppDispatch, useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { userActions } from '../../../entities/User'
 import cls from './Navbar.module.scss'
@@ -11,7 +11,7 @@ interface NavbarProps {
   className?: string
 }
 
-export const Navbar = ({ className }: NavbarProps): JSX.Element => {
+export const Navbar = memo(({ className }: NavbarProps): JSX.Element => {
   const { t } = useTranslation()
   const [isAuthModal, setAuthModal] = useState(false)
   const { authData } = useAppSelector(state => state.user)
@@ -27,7 +27,6 @@ export const Navbar = ({ className }: NavbarProps): JSX.Element => {
 
   const onLogout = useCallback((): void => {
     dispatch(userActions.logout())
-    setAuthModal(false)
   }, [dispatch])
 
   if (authData) {
@@ -61,4 +60,4 @@ export const Navbar = ({ className }: NavbarProps): JSX.Element => {
       )}
     </div>
   )
-}
+})
