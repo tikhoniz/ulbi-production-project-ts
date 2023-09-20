@@ -1,9 +1,4 @@
-import React, {
-  Component,
-  Suspense,
-  type ErrorInfo,
-  type ReactNode
-} from 'react'
+import React, { Component, Suspense, type ErrorInfo, type ReactNode } from 'react'
 import { PageError } from 'widgets/PageError/ui/PageError'
 
 interface ErrorBoundaryProps {
@@ -20,6 +15,8 @@ type ErrorBoundaryRender =
   | boolean
   | Iterable<React.ReactNode>
   | JSX.Element
+  | ReactNode
+  | undefined
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {

@@ -1,12 +1,6 @@
-import axios from 'axios'
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk'
 import { userActions } from '../../../../../entities/User'
 import { loginByUsername } from './loginByUsername'
-
-jest.mock('axios')
-
-// const mockedAxios = jest.mocked(axios)
-const mockedAxios = axios as jest.Mocked<typeof axios>
 
 describe('loginByUsername.test', () => {
   // test('success login', async () => {
@@ -44,10 +38,11 @@ describe('loginByUsername.test', () => {
 
   test('success login', async () => {
     const userValue = { username: '123', id: '1' }
-    mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }))
 
     // вынес переиспользованную логику в отдельный класс TestAsyncThunk
     const thunk = new TestAsyncThunk(loginByUsername)
+    thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }))
+
     const result = await thunk.callThunk({ username: '123', password: '123' })
 
     //  сохраняются ли данные в стейте
@@ -55,7 +50,7 @@ describe('loginByUsername.test', () => {
     //  диспатч был вызван три раза
     expect(thunk.dispatch).toHaveBeenCalledTimes(3)
     //  запрос был отправлен
-    expect(mockedAxios.post).toHaveBeenCalled()
+    expect(thunk.api.post).toHaveBeenCalled()
     //  asyncThunk отработал без ошибки
     expect(result.meta.requestStatus).toBe('fulfilled')
     //  payload содержит данные пользователя
@@ -63,15 +58,15 @@ describe('loginByUsername.test', () => {
   })
 
   test('error login', async () => {
-    mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }))
     // вынес переиспользованную логику в отдельный класс TestAsyncThunk
     const thunk = new TestAsyncThunk(loginByUsername)
+    thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }))
     const result = await thunk.callThunk({ username: '123', password: '123' })
 
     //  диспатч был вызван два раза
     expect(thunk.dispatch).toHaveBeenCalledTimes(2)
     //  запрос был отправлен
-    expect(mockedAxios.post).toHaveBeenCalled()
+    expect(thunk.api.post).toHaveBeenCalled()
     //  asyncThunk отработал без ошибки
     expect(result.meta.requestStatus).toBe('rejected')
     //  в случае ошибки payload равняется error

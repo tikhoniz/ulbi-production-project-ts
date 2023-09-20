@@ -8,7 +8,7 @@ import path from 'path'
 
 const config: Config = {
   // A set of global variables that need to be available in all test environments
-  globals: { __IS_DEV__: true },
+  globals: { __IS_DEV__: true, __API__: '' },
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
   coveragePathIgnorePatterns: ['/node_modules/'],

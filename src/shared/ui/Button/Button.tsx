@@ -1,5 +1,5 @@
-import { type ReactNode, memo, type ButtonHTMLAttributes } from 'react'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { memo, type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { type Mods, classNames } from 'shared/lib/classNames/classnames'
 import cls from './Button.module.scss'
 
 export enum ButtonTheme {
@@ -26,10 +26,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = memo((props: ButtonProps) => {
-  const { className, children, theme, square, disabled, size = ButtonSize.M, ...otherProps } = props
+  const {
+    className,
+    children,
+    theme = ButtonTheme.OUTLINE,
+    square,
+    disabled,
+    size = ButtonSize.M,
+    ...otherProps
+  } = props
 
   // создать объект модификаторов
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls[theme]]: true,
     [cls.square]: square,
     [cls[size]]: true,

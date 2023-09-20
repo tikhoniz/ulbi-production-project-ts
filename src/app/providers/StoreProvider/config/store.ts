@@ -1,9 +1,14 @@
-import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
-import { type ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { type ReducersListEntry } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+  configureStore,
+  type CombinedState,
+  type Reducer,
+  type ReducersMapObject
+} from '@reduxjs/toolkit'
+import { $api } from 'shared/api/api'
+
 import { userReducer } from '../../../../entities/User'
-import { type StateSchema } from './StateSchema'
 import { createReducerManager } from './reducerManager'
+import { type StateSchema, type StateSchemaKey, type ThunkExtraArg } from './StateSchema'
 
 // обязательные редьюсеры
 const rootReducers: ReducersMapObject<StateSchema> = {
@@ -13,29 +18,36 @@ const rootReducers: ReducersMapObject<StateSchema> = {
 const reducerManager = createReducerManager(rootReducers)
 
 export function createReduxStore(
-  initialState: any,
+  initialState?: StateSchema,
   // for storybook
   asyncReducers?: ReducersMapObject<StateSchema>
-): ToolkitStore {
+) {
   // вся эта байда делается только для storybook, в сборку проекта асинхронные редьюсеры добавляются в компоненте DynamicModuleLoader
   if (asyncReducers) {
-    Object.entries(asyncReducers).forEach(([keyName, reducer]: ReducersListEntry) => {
-      reducerManager.add(keyName, reducer)
+    Object.entries(asyncReducers).forEach(([keyName, reducer]) => {
+      reducerManager.add(keyName as StateSchemaKey, reducer)
     })
   }
 
+  const extraArg: ThunkExtraArg = {
+    api: $api
+  }
+
   const store = configureStore({
-    reducer: reducerManager.reduce,
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     devTools: __IS_DEV__,
-    middleware: getDefaultMiddleware => getDefaultMiddleware(),
-    preloadedState: initialState
+    preloadedState: initialState,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        thunk: { extraArgument: extraArg }
+      })
   })
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
+
+  // @ts-ignore
   store.reducerManager = reducerManager
 
   return store
 }
 // типизация
 export type RootState = ReturnType<typeof reducerManager.reduce>
-export type AppStore = ReturnType<typeof createReduxStore>['dispatch']
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']

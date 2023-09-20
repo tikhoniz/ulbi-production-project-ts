@@ -14,7 +14,6 @@ const preview: Preview = {
       }
     }
   },
-  // global.__BASE_PATH__ = "/",
   decorators: [ThemeDecorator(Theme.LIGHT), RouterDecorator]
 }
 

@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classnames'
-import { Modal } from 'shared/ui/Modal/Modal'
-import { LoginForm } from '../LoginForm/LoginForm'
 import cls from './Login.module.scss'
+import { Modal } from 'shared/ui/Modal/Modal'
+import LoginForm from '../LoginForm/LoginForm'
 
 interface LoginModalProps {
   className?: string

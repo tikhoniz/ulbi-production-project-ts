@@ -1,4 +1,3 @@
-import type { DeepPartial } from '@reduxjs/toolkit'
 import type { StateSchema } from 'app/providers/StoreProvider'
 import { getLoginIsLoading } from './getLoginIsLoading'
 
@@ -6,6 +5,8 @@ describe('getLoginIsLoading.test', () => {
   test('should return true', () => {
     const state: DeepPartial<StateSchema> = {
       loginForm: {
+        username: '',
+        password: '',
         isLoading: true
       }
     }

@@ -1,17 +1,10 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import {
-  DefinePlugin,
-  ProgressPlugin,
-  type WebpackPluginInstance
-} from 'webpack'
+import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { type BuildOptions } from './types/config'
 
-export function buildPlugins({
-  paths,
-  isDev
-}: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] {
   const plugins = [
     // переносит index.html в папку build
     new HtmlWebpackPlugin({
@@ -27,7 +20,8 @@ export function buildPlugins({
 
     // позволяет прокидывать глобальные переменные в код
     new DefinePlugin({
-      __IS_DEV__: JSON.stringify(isDev)
+      __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl)
     })
   ]
   // добавляем плагин BundleAnalyzerPlugin только при разработке, для того чтобы при сборке в

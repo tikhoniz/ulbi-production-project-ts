@@ -61,6 +61,9 @@ module.exports = {
     // 'no-shadow': 'off',
     // 'import/extensions': 'off',
     // 'import/no-extraneous-dependencies': 'off',
+    // 'max-len': ['error', { ignoreComments: true, code: 120 }],
+    '@typescript-eslint/prefer-ts-expect-error': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     'react/display-name': 'off',
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', { markupOnly: true }],
@@ -71,11 +74,12 @@ module.exports = {
     indent: 'off',
     '@typescript-eslint/indent': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'multiline-ternary': 'off'
   },
   globals: {
-    __IS_DEV__: true
+    __IS_DEV__: true,
+    __API__: true
   },
   settings: {
     react: {

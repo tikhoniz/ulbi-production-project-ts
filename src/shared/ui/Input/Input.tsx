@@ -8,14 +8,23 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 
 interface InputProps extends HTMLInputProps {
   className?: string
-  value: string
-  type: string
-  onChange: (value: string) => void
+  value?: string | undefined
+  type?: string
+  onChange?: (value: string) => void
   autofocus?: boolean
+  placeholder?: string
 }
 
 export const Input = memo((props: InputProps): JSX.Element => {
-  const { className, value, onChange, type = 'text', autofocus = false, ...otherProps } = props
+  const {
+    className,
+    value,
+    onChange,
+    type = 'text',
+    autofocus = false,
+    placeholder,
+    ...otherProps
+  } = props
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     // т.к. onChange не обязательный нужно применить опшинал чейнинг, если пропс onChange не передан функция вызвана не будет
@@ -25,6 +34,7 @@ export const Input = memo((props: InputProps): JSX.Element => {
   return (
     <div className={classNames(cls.Input, {}, [className])}>
       <input
+        placeholder={placeholder}
         autoFocus={autofocus}
         type={type}
         value={value}

@@ -1,5 +1,4 @@
 /* eslint-disable spaced-comment */
-import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider'
 import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
 import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading'
 import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword'
@@ -13,6 +12,7 @@ import {
   DynamicModuleLoader,
   type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { useAppDispatch, useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
@@ -27,7 +27,7 @@ const initialReducers: ReducersList = {
   loginForm: loginReducer
 }
 
-export const LoginForm = memo(({ className, onSuccess }: LoginFormProps): JSX.Element => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps): JSX.Element => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const username = useAppSelector(getLoginUsername)
@@ -95,3 +95,5 @@ export const LoginForm = memo(({ className, onSuccess }: LoginFormProps): JSX.El
     </DynamicModuleLoader>
   )
 })
+
+export default LoginForm

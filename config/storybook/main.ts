@@ -31,10 +31,10 @@ const config: StorybookConfig = {
       entry: '',
       src: path.resolve(__dirname, '..', '..', 'src')
     }
-    config?.resolve?.modules?.push(paths.src)
-    config?.resolve?.extensions?.push('.ts', '.tsx')
+    config.resolve?.modules?.push(paths.src)
+    config.resolve?.extensions?.push('.ts', '.tsx')
     //! выяснить правильный тип
-    const rules: any = config?.module?.rules
+    const rules: any = config.module?.rules
     rules.push(buildCssLoader(true))
     // фильтруем правила содержащие svg и отключаем его
     rules
@@ -43,9 +43,10 @@ const config: StorybookConfig = {
     // добавляем в массив правил обработчик svg
     rules.push(buildSvgLoader())
     // прокидываем глобальную переменную в storybook
-    config?.plugins?.push(
+    config.plugins?.push(
       new DefinePlugin({
-        __IS_DEV__: true
+        __IS_DEV__: true,
+        __API__: JSON.stringify('')
       })
     )
 

@@ -17,19 +17,10 @@ export const Light: Story = {
   args: {}
 }
 
-Light.decorators = [
-  StoreDecorator({
-    profile: { readonly: true, isLoading: false, error: undefined, data: undefined }
-  })
-]
+Light.decorators = [StoreDecorator({})]
 
 export const Dark: Story = {
   args: {}
 }
 
-Dark.decorators = [
-  ThemeDecorator(Theme.DARK),
-  StoreDecorator({
-    profile: { readonly: true, isLoading: false, error: undefined, data: undefined }
-  })
-]
+Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})]
