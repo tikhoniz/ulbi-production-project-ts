@@ -1,33 +1,33 @@
 {
-	"posts": [
-		{
-			"id": 1,
-			"title": "json-server",
-			"author": "typicode"
-		}
-	],
-	"comments": [
-		{
-			"id": 1,
-			"body": "some comment",
-			"postId": 1
-		}
-	],
-	"users": [
-		{
-			"id": "1",
-			"username": "admin",
-			"password": "123"
-		}
-	],
-	"profile": {
-		"first": "Tikhon",
-		"lastname": "Iz",
-		"age": 44,
-		"currency": "RUB",
-		"country": "Russia",
-		"city": "Moscow",
-		"username": "admin",
-		"avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
-	}
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123"
+    }
+  ],
+  "profile": {
+    "first": "Jim",
+    "lastname": "Morrison",
+    "age": 27,
+    "currency": "RUB",
+    "country": "Belarus",
+    "city": "LA",
+    "username": "admin",
+    "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
+  }
 }

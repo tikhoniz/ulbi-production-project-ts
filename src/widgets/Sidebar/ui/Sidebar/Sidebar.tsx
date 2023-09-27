@@ -2,10 +2,10 @@ import { memo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classnames'
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button'
 import { LangSwitcher } from 'widgets/LangSwitcher'
-import { SidebarItemList } from 'widgets/Sidebar/model/items'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
-import { SidebarItem } from '../SidebarItem/SidebarItem'
 import cls from './Sidebar.module.scss'
+import { SidebarItem } from '../SidebarItem/SidebarItem'
+import { SidebarItemList } from 'widgets/Sidebar/model/items'
 
 interface SidebarProps {
   className?: string

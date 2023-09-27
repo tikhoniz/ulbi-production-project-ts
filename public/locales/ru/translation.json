@@ -2,7 +2,7 @@
 	"lang": "Russian",
 	"shortLang": "RU",
 	"page404": "Страница не найдена! 404",
-	"PageError": "Что-то пошло не так",
+	"ErrorPage": "Что-то пошло не так",
 	"refreshPage": "обновить страницу",
 	"toggle": "Переключить",
 	"login": "Войти",

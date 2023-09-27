@@ -19,5 +19,6 @@
     "testid",
     "typicode"
   ],
-  "cSpell.language": "en,ru,en-US,ru-RU"
+  "cSpell.language": "en,ru,en-US,ru-RU",
+  "liveServer.settings.port": 5501
 }

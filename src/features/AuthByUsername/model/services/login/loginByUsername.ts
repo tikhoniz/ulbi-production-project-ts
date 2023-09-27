@@ -10,9 +10,9 @@ interface LoginByUsernameProps {
 }
 
 export const loginByUsername = createAsyncThunk<
-  User, // дженерик, то что возвращаем
-  LoginByUsernameProps, // дженерик, аргумент ожидаемый на вход
-  ThunkConfig<string> // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
+User, // дженерик, то что возвращаем
+LoginByUsernameProps, // дженерик, аргумент ожидаемый на вход
+ThunkConfig<string> // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
 >('login/loginByUsername', async (authData, thunkApi) => {
   const { extra, dispatch, rejectWithValue } = thunkApi
 

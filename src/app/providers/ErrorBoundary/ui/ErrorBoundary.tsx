@@ -1,5 +1,5 @@
 import React, { Component, Suspense, type ErrorInfo, type ReactNode } from 'react'
-import { PageError } from 'widgets/PageError/ui/PageError'
+import { ErrorPage } from 'widgets/ErrorPage/ui/ErrorPage'
 
 interface ErrorBoundaryProps {
   children?: ReactNode
@@ -44,7 +44,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       return (
         // чтобы подгрузились переводы нужно обернуть компонент в Suspense
         <Suspense fallback=''>
-          <PageError />
+          <ErrorPage />
         </Suspense>
       )
     }

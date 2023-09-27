@@ -1,16 +1,16 @@
-// PageError.stories.ts|tsx
+// ErrorPage.stories.ts|tsx
 import type { Meta, StoryObj } from '@storybook/react'
 import { Theme } from 'app/providers/ThemeProvider'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
-import { PageError } from './PageError'
+import { ErrorPage } from './ErrorPage'
 
-const meta: Meta<typeof PageError> = {
-  component: PageError,
-  title: 'widgets/PageError'
+const meta: Meta<typeof ErrorPage> = {
+  component: ErrorPage,
+  title: 'widgets/ErrorPage'
 }
 
 export default meta
-type Story = StoryObj<typeof PageError>
+type Story = StoryObj<typeof ErrorPage>
 
 export const Light: Story = {
   args: {}

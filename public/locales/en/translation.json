@@ -2,7 +2,7 @@
 	"lang": "English",
 	"shortLang": "EN",
 	"page404": "Page not found! 404",
-	"PageError": "Something went wrong",
+	"ErrorPage": "Something went wrong",
 	"refreshPage": "refresh the page",
 	"toggle": "Toggle",
 	"login": "Login",

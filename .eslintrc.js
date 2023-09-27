@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    jest: true
   },
   extends: [
     'standard-with-typescript',
@@ -44,6 +45,8 @@ module.exports = {
     // должным образом
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    'no-trailing-spaces': 'warn',
     // semi: 'on',
     // '@typescript-eslint/semi': 'error',
     // indent: [2, 4],
@@ -53,7 +56,6 @@ module.exports = {
     // ],
     // 'import/no-unresolved': 'off',
     // 'import/prefer-default-export': 'off',
-    // 'no-unused-vars': 'warn',
     // 'react/require-default-props': 'off',
     // 'react/react-in-jsx-scope': 'off',
     // 'react/jsx-props-no-spreading': 'warn',
