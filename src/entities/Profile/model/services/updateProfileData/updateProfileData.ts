@@ -1,18 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type ThunkConfig } from 'app/providers/StoreProvider'
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm'
-import { type Profile } from '../../types/profile'
+import { ValidateProfileError, type Profile } from '../../types/profile'
+import { validateProfileData } from '../validateProfileData/validateProfileData'
 
 // типы которые ожидаются на вход
 export const updateProfileData = createAsyncThunk<
 Profile, // дженерик, то что возвращаем
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 void, // дженерик, аргумент ожидаемый на вход
-ThunkConfig<string> // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
+ThunkConfig<ValidateProfileError[]> // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
 >('profile/updateProfileData', async (_, thunkApi) => {
   const { extra, rejectWithValue, getState } = thunkApi
 
   const formData = getProfileForm(getState())
+
+  const errors = validateProfileData(formData)
+
+  // если есть хоть одна ошибка, вернуть rejectWithValue
+  if (errors.length) return rejectWithValue(errors)
 
   try {
     const response = await extra.api.put<Profile>('/profile', formData)
@@ -27,6 +33,6 @@ ThunkConfig<string> // третьим дженериком  createAsyncThunk п�
   } catch (e) {
     console.log(e)
     // вернуть можно только string
-    return rejectWithValue('error')
+    return rejectWithValue([ValidateProfileError.SERVER_ERROR])
   }
 })

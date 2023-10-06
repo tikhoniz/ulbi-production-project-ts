@@ -20,6 +20,8 @@ declare module '*.svg' {
 declare const __IS_DEV__: boolean
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare const __API__: string
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare const __PROJECT__: 'storybook' | 'frontend' | 'jest'
 
 // используем свой DeepPartial вместо редаксовского, потому как редаксовский не работает
 // DeepPartial используется для того чтоьы сделать все поля стейта необязательными, нужно для тестирования

@@ -14,14 +14,20 @@ const mockedAxios = axios as jest.Mocked<typeof axios>
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
   // описание типов
   dispatch: jest.MockedFn<any>
+
   getState: () => StateSchema
+
   actionCreator: ActionCreatorType<Return, Arg, RejectedValue>
+
   api: jest.Mocked<AxiosStatic>
 
-  constructor(actionCreator: ActionCreatorType<Return, Arg, RejectedValue>) {
+  constructor(
+    actionCreator: ActionCreatorType<Return, Arg, RejectedValue>,
+    state?: DeepPartial<StateSchema>
+  ) {
     this.actionCreator = actionCreator
     this.dispatch = jest.fn()
-    this.getState = jest.fn()
+    this.getState = jest.fn(() => state as StateSchema)
     this.api = mockedAxios
   }
 

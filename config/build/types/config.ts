@@ -19,4 +19,6 @@ export interface BuildOptions {
   isDev: boolean
   port: number
   apiUrl: string
+  // для разделения рабочих сред
+  project: 'storybook' | 'frontend' | 'jest'
 }

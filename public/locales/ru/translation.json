@@ -9,6 +9,8 @@
 	"authform": "Форма авторизации",
 	"logout": "Выйти",
 	"errors": {
-		"wrong_name_or_pass": "Вы ввели неверный логин или пароль"
+		"wrong_name_or_pass": "Вы ввели неверный логин или пароль",
+		"server_error": "Ошибка сервера",
+		"incorrect_user_data": "Укажите корректные данные"
 	}
 }

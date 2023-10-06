@@ -1,3 +1,3 @@
 import { type StateSchema } from 'app/providers/StoreProvider'
 
-export const getProfileError = (state: StateSchema): string => state.profile?.error ?? ''
+export const getProfileError = (state: StateSchema) => state.profile?.error

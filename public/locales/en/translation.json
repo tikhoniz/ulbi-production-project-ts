@@ -9,6 +9,7 @@
 	"logout": "Logout",
 	"authform": "Authorization form",
 	"errors": {
-		"wrong_name_or_pass": "Incorrect username or password"
+		"wrong_name_or_pass": "Incorrect username or password",
+		"server_error": "Server has mistake"
 	}
 }

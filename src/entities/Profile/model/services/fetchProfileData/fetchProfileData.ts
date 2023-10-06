@@ -6,7 +6,7 @@ import { type Profile } from '../../types/profile'
 export const fetchProfileData = createAsyncThunk<
 Profile, // дженерик, то что возвращаем
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-string, // дженерик, аргумент ожидаемый на вход
+void, // дженерик, аргумент ожидаемый на вход
 ThunkConfig<string> // третьим дженериком  createAsyncThunk принимает AsyncThunkConfig в котором есть несколько параметров (state, dispatch, extra, rejectValue и т.д.)
 >('profile/fetchProfileData', async (_, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi

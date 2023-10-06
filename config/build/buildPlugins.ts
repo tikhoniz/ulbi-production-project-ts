@@ -4,7 +4,12 @@ import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpac
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { type BuildOptions } from './types/config'
 
-export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins({
+  paths,
+  isDev,
+  apiUrl,
+  project
+}: BuildOptions): WebpackPluginInstance[] {
   const plugins = [
     // переносит index.html в папку build
     new HtmlWebpackPlugin({
@@ -21,7 +26,8 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPlu
     // позволяет прокидывать глобальные переменные в код
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
-      __API__: JSON.stringify(apiUrl)
+      __API__: JSON.stringify(apiUrl),
+      __PROJECT__: JSON.stringify(project)
     })
   ]
   // добавляем плагин BundleAnalyzerPlugin только при разработке, для того чтобы при сборке в
