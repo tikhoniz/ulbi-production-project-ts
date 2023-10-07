@@ -1,9 +1,12 @@
 import { type RuleSetRule } from 'webpack'
 import { buildCssLoader } from './loaders/buildCssLoader'
-import { type BuildOptions } from './types/config'
 import { buildSvgLoader } from './loaders/buildSvgLoader'
+import { type BuildOptions } from './types/config'
+import { buildBabelLoader } from './loaders/buildBabelLoader'
 
-export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): RuleSetRule[] {
+  const { isDev } = options
+
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff|woff2)$/i,
     use: [
@@ -12,6 +15,8 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
       }
     ]
   }
+  const babelLoader = buildBabelLoader(options)
+
   // подключение загрузчика SVG
   const svgLoader = buildSvgLoader()
   // подключение загрузчика стилей

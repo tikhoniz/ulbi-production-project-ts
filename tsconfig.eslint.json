@@ -10,6 +10,7 @@
     ".eslintrc.js",
     "webpack.config.ts",
     "./config/build/buildDevServer.ts",
+    "./config/build/loaders/buildBabelLoader.ts",
     "./config/build/buildLoaders.ts",
     "./config/build/buildPlugins.ts",
     "./config/build/buildResolvers.ts",

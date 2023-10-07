@@ -1,3 +1,4 @@
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { DefinePlugin, ProgressPlugin, type WebpackPluginInstance } from 'webpack'
@@ -34,7 +35,10 @@ export function buildPlugins({
   // CI в гите сборка собиралась
   // плагин BundleAnalyzerPlugin для анализа размера бандла, флаг openAnalyzer: false, чтобы каждый раз не открывался при запуске
   // Webpack Bundle Analyzer is started at http://127.0.0.1:8888
-  if (isDev) plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }))
+  if (isDev) {
+    plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }))
+    plugins.push(new ReactRefreshWebpackPlugin())
+  }
 
   return plugins
 }
