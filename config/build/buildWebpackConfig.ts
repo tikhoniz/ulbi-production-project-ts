@@ -5,7 +5,9 @@ import { buildPlugins } from './buildPlugins'
 import { buildResolvers } from './buildResolvers'
 import { type BuildOptions } from './types/config'
 
-export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+export function buildWebpackConfig(
+  options: BuildOptions
+): webpack.Configuration {
   const { paths, mode, isDev } = options
   return {
     // development указывается на стадии разработки, при production webpack минимизирует код
@@ -17,7 +19,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       // для предотвращения кеширования необходимо при билде создавать динамичное название сбилдиного файла
       filename: '[name].[contenthash].js',
       path: paths.build,
-      clean: true // очищает папку build при новой сборке
+      clean: true, // очищает папку build при новой сборке
+      publicPath: '/' //! выяснить
     },
     // плагины в webpack позволяют выполнять задачи после сборки бандла
     plugins: buildPlugins(options),

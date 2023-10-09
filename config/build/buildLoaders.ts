@@ -1,8 +1,8 @@
 import { type RuleSetRule } from 'webpack'
+import { buildBabelLoader } from './loaders/buildBabelLoader'
 import { buildCssLoader } from './loaders/buildCssLoader'
 import { buildSvgLoader } from './loaders/buildSvgLoader'
 import { type BuildOptions } from './types/config'
-import { buildBabelLoader } from './loaders/buildBabelLoader'
 
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
   const { isDev } = options
@@ -29,5 +29,5 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     exclude: /node_modules/
   }
 
-  return [typescriptLoader, cssLoader, svgLoader, fileLoader]
+  return [typescriptLoader, cssLoader, svgLoader, fileLoader, babelLoader]
 }
