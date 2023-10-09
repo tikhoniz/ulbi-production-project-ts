@@ -1,0 +1,23 @@
+{
+  "ErrorPage": "ErrorPage",
+  "authform": "authform",
+  "country": "country",
+  "currency": "currency",
+  "errors": {
+    "incorrect_age": "incorrect_age",
+    "incorrect_country": "incorrect_country",
+    "incorrect_user_data": "incorrect_user_data",
+    "no_data": "no_data",
+    "serverError": "serverError"
+  },
+  "lang": "lang",
+  "login": "login",
+  "logout": "logout",
+  "page404": "page404",
+  "refreshPage": "refreshPage",
+  "shortLang": "shortLang",
+  "throwError": "throwError",
+  "Произошла ошибка при загрузке статьи": {
+    "": ""
+  }
+}

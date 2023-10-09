@@ -29,5 +29,5 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     exclude: /node_modules/
   }
 
-  return [typescriptLoader, cssLoader, svgLoader, fileLoader, babelLoader]
+  return [typescriptLoader, cssLoader, svgLoader, fileLoader]
 }
