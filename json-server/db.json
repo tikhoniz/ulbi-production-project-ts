@@ -104,13 +104,15 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
     }
   ],
   "profile": {
