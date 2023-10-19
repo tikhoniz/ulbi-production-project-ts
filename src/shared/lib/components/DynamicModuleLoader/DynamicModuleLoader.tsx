@@ -20,8 +20,10 @@ interface DynamicModuleLoaderProps {
   children: ReactNode
 }
 
-export const DynamicModuleLoader = (props: DynamicModuleLoaderProps): JSX.Element => {
-  const { children, reducers, removeAfterUnmount } = props
+export const DynamicModuleLoader = (
+  props: DynamicModuleLoaderProps
+): JSX.Element => {
+  const { children, reducers, removeAfterUnmount = true } = props
 
   const store = useStore() as ReduxStoreWithManager
   // const dispatch = useAppDispatch()
@@ -42,6 +44,7 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps): JSX.Elemen
 
     return () => {
       // если флаг removeAfterUnmount = true
+      // удаляем редьюсеры если ушли со страницы
       if (removeAfterUnmount) {
         Object.entries(reducers).forEach(([keyName, reducer]) => {
           // удаляем редьюсер  когда компонент размонтирован

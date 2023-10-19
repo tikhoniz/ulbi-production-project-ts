@@ -6,12 +6,13 @@ import {
   type ReducersMapObject
 } from '@reduxjs/toolkit'
 import { type AxiosInstance } from 'axios'
-import { type ArticleDetailsSchema } from '../../../../entities/Article'
 import type { LoginSchema } from 'features/AuthByUsername'
+import { type ArticleDetailsCommentsSchema } from 'pages/ArcticleDetailsPage/model/types/ArticleDetailsCommentsSchema'
 import { type NavigateOptions, type To } from 'react-router-dom'
+import { type ArticleDetailsSchema } from '../../../../entities/Article'
 import type { ProfileSchema } from '../../../../entities/Profile'
 import type { UserSchema } from '../../../../entities/User'
-import { type ArticleDetailsCommentsSchema } from 'pages/ArcticleDetailsPage/model/types/ArticleDetailsCommentsSchema'
+import { type AddNewCommentSchema } from 'features/addNewComment'
 
 export interface StateSchema {
   user: UserSchema
@@ -20,6 +21,7 @@ export interface StateSchema {
   profile?: ProfileSchema
   articleDetails?: ArticleDetailsSchema
   articleDetailsComments?: ArticleDetailsCommentsSchema
+  addNewComment?: AddNewCommentSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

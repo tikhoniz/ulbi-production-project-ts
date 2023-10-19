@@ -24,6 +24,18 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "hi there",
+      "id": "x460j5w"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "мой коммент",
+      "id": "aL5PBe1"
     }
   ],
   "articles": [
@@ -105,7 +117,7 @@
       "username": "admin",
       "password": "123",
       "role": "ADMIN",
-      "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
+      "avatar": "https://avatars.githubusercontent.com/u/102209317?v=4"
     },
     {
       "id": "2",
@@ -115,14 +127,28 @@
       "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
     }
   ],
-  "profile": {
-    "first": "Jim",
-    "lastname": "фффф",
-    "age": 27,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "LA",
-    "username": "admin",
-    "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Hacker",
+      "lastname": "Neulovimov",
+      "age": 27,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "LA",
+      "username": "admin",
+      "avatar": "https://avatars.githubusercontent.com/u/102209317?v=4"
+    },
+    {
+      "id": "2",
+      "first": "Jim",
+      "lastname": "фффф",
+      "age": 27,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "LA",
+      "username": "admin",
+      "avatar": "https://www.peoples.ru/art/music/rock/morrison/ACRqeLG4GqvSM.jpeg"
+    }
+  ]
 }

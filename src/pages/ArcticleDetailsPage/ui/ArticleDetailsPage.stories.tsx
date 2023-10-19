@@ -1,3 +1,4 @@
+// ArticleDetailsPage.stories.ts|tsx
 import { type Meta, type StoryObj } from '@storybook/react'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 import { type Article } from '../../../entities/Article'
@@ -8,8 +9,8 @@ import {
 import ArticleDetailsPage from './ArticleDetailsPage'
 
 const meta: Meta<typeof ArticleDetailsPage> = {
-  title: 'pages/ArticleDetailsPage',
-  component: ArticleDetailsPage
+  component: ArticleDetailsPage,
+  title: 'pages/ArticleDetailsPage'
 }
 
 export default meta
@@ -54,6 +55,7 @@ const article: Article = {
 export const Normal: Story = {
   args: {}
 }
+
 Normal.decorators = [
   StoreDecorator({
     articleDetails: {

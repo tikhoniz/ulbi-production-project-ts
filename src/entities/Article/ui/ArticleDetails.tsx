@@ -1,6 +1,3 @@
-import { ArticleCodeBlockComponent } from '../../../entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent'
-import { ArticleImageBlockComponent } from '../../../entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent'
-import { ArticleTextBlockComponent } from '../../../entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent'
 import { memo, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -12,6 +9,9 @@ import {
   type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/reduxHooks/reduxHooks'
+import { ArticleCodeBlockComponent } from '../../../entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent'
+import { ArticleImageBlockComponent } from '../../../entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent'
+import { ArticleTextBlockComponent } from '../../../entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent'
 
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Icon } from 'shared/ui/Icon/Icon'
@@ -19,15 +19,16 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 import { Text, TextAlign } from 'shared/ui/Text/Text'
 
 // import { ArticleBlock, ArticleBlockType } from '../../model/types/article'
-import cls from './ArticleDetails.module.scss'
-import { articleDetailsReducer } from '../model/slice/articleDetailsSlice'
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading
 } from '../model/selectors/articleDetails'
 import { fetchArticleById } from '../model/services/fetchArticleById/fetchArticleById'
-import { type ArticleBlock, ArticleBlockType } from '../model/types/article'
+import { articleDetailsReducer } from '../model/slice/articleDetailsSlice'
+import { ArticleBlockType, type ArticleBlock } from '../model/types/article'
+import cls from './ArticleDetails.module.scss'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 
 interface ArticleDetailsProps {
   className?: string
@@ -78,11 +79,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
-      void dispatch(fetchArticleById(id))
-    }
-  }, [dispatch, id])
+  // useInitialEffect используется для того, что бы получение данных не срабатывало, если идет
+  // иницилизация storybook
+  useInitialEffect(() => {
+    dispatch(fetchArticleById(id))
+  })
 
   let content
 
@@ -133,7 +134,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.ArticleDetails, {}, [className])}>
         {content}
       </div>

@@ -1,12 +1,17 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 // import { useTranslation } from 'react-i18next'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classnames'
 import {
   DynamicModuleLoader,
   type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { useAppDispatch, useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
+import {
+  useAppDispatch,
+  useAppSelector
+} from 'shared/lib/hooks/reduxHooks/reduxHooks'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import {
   ProfileCard,
@@ -33,7 +38,7 @@ interface ProfilePageProps {
   id?: string
 }
 
-const ProfilePage = ({ className, id = '1' }: ProfilePageProps): JSX.Element => {
+const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
   const { t } = useTranslation('')
   const dispatch = useAppDispatch()
   const formData = useAppSelector(getProfileForm)
@@ -41,6 +46,7 @@ const ProfilePage = ({ className, id = '1' }: ProfilePageProps): JSX.Element => 
   const error = useAppSelector(getProfileError)
   const readonly = useAppSelector(getProfileReadOnly)
   const validateErrors = useAppSelector(getProfileValidateErrors)
+  const { id } = useParams<{ id: string }>()
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('errors.serverError'),
@@ -50,12 +56,13 @@ const ProfilePage = ({ className, id = '1' }: ProfilePageProps): JSX.Element => 
     [ValidateProfileError.NO_DATA]: t('errors.no_data')
   }
 
-  useEffect(() => {
-    // проверка для сторибука
-    if (__PROJECT__ !== 'storybook') {
-      void dispatch(fetchProfileData())
+  // используется для того, что бы получение данных не срабатывало, если идет
+  // иницилизация storybook
+  useInitialEffect(() => {
+    if (id) {
+      void dispatch(fetchProfileData(id))
     }
-  }, [dispatch])
+  })
 
   const onChangeFirstname = useCallback(
     (value?: string) => {
@@ -107,15 +114,11 @@ const ProfilePage = ({ className, id = '1' }: ProfilePageProps): JSX.Element => 
   )
 
   return (
-    <DynamicModuleLoader
-      reducers={reducers}
-      // удаляем редьюсеры если ушли со страницы
-      removeAfterUnmount
-    >
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames('', {}, [className])}>
         <ProfilePageHeader />
         {validateErrors?.length &&
-          validateErrors.map(err => (
+          validateErrors.map((err) => (
             <Text
               key={err}
               theme={TextTheme.ERROR}

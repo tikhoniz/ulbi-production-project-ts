@@ -21,7 +21,10 @@ ThunkConfig<ValidateProfileError[]> // третьим дженериком  crea
   if (errors.length) return rejectWithValue(errors)
 
   try {
-    const response = await extra.api.put<Profile>('/profile', formData)
+    const response = await extra.api.put<Profile>(
+      `/profile/${formData?.id}`,
+      formData
+    )
     // проверка для подстраховки
     if (!response.data) {
       throw new Error()

@@ -1,4 +1,5 @@
-import { memo } from 'react'
+import { AddNewComment } from 'features/addNewComment'
+import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classnames'
@@ -15,6 +16,7 @@ import { Text } from 'shared/ui/Text/Text'
 import { ArticleDetails } from '../../../entities/Article'
 import { CommentList } from '../../../entities/Comment'
 import { getArticleCommentsIsLoading } from '../model/selectors/comments'
+import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle'
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import {
   articleDetailsCommentsReducer,
@@ -39,16 +41,23 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const comments = useAppSelector(getArticleComments.selectAll)
   const commentsIsLoading = useAppSelector(getArticleCommentsIsLoading)
 
-  // используется для того, что бы получение данных не срабатывало, если идет
+  const onSendComment = useCallback(
+    (text: string) => {
+      dispatch(addCommentForArticle(text))
+    },
+    [dispatch]
+  )
+
+  // useInitialEffect используется для того, что бы получение данных не срабатывало, если идет
   // иницилизация storybook
   useInitialEffect(() => {
-    void dispatch(fetchCommentsByArticleId(id))
+    dispatch(fetchCommentsByArticleId(id))
   })
 
   if (!id) {
     return (
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        {t('Article not found')}
+        {t('ArticleNotFound')}
       </div>
     )
   }
@@ -58,6 +67,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t('comments')} />
+        <AddNewComment onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </div>
     </DynamicModuleLoader>

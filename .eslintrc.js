@@ -77,7 +77,8 @@ module.exports = {
     '@typescript-eslint/indent': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'multiline-ternary': 'off'
+    'multiline-ternary': 'off',
+    '@typescript-eslint/no-floating-promises': 'off' // обнаруживает только необработанные операторы Promise
   },
   globals: {
     __IS_DEV__: true,

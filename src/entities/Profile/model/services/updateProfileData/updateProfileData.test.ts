@@ -1,8 +1,8 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk'
 import { Country } from '../../../../Country'
 import { Currency } from '../../../../Currency'
-import { updateProfileData } from './updateProfileData'
 import { ValidateProfileError } from '../../types/profile'
+import { updateProfileData } from './updateProfileData'
 
 const data = {
   first: 'Tikhon',
@@ -11,7 +11,8 @@ const data = {
   city: 'Moscow',
   age: 22,
   country: Country.Russia,
-  currency: Currency.RUB
+  currency: Currency.RUB,
+  id: '1'
 }
 
 describe('updateProfileData.test', () => {
