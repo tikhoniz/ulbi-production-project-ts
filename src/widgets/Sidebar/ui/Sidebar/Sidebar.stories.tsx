@@ -16,10 +16,23 @@ type Story = StoryObj<typeof Sidebar>
 export const Light: Story = {
   args: {}
 }
-Light.decorators = [StoreDecorator({})]
+Light.decorators = [StoreDecorator({ user: { authData: {} } })]
 
 export const Dark: Story = {
   args: {}
 }
 
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})]
+Dark.decorators = [
+  ThemeDecorator(Theme.DARK),
+  StoreDecorator({ user: { authData: {} } })
+]
+
+export const NoAuth: Story = {
+  args: {}
+}
+
+NoAuth.decorators = [
+  StoreDecorator({
+    user: {}
+  })
+]

@@ -16,7 +16,7 @@ export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false)
   const sidebarItemsList = useAppSelector(getSidebarItems)
 
-  const onToggle = (): void => setCollapsed((prev) => !prev)
+  const onToggle = () => setCollapsed((prev) => !prev)
 
   const itemsList = useMemo(
     () =>
