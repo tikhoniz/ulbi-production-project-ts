@@ -1,7 +1,7 @@
 import { AddNewComment } from 'features/addNewComment'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classnames'
 import {
   DynamicModuleLoader,
@@ -13,6 +13,8 @@ import {
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Text } from 'shared/ui/Text/Text'
+
+import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { ArticleDetails } from '../../../entities/Article'
 import { CommentList } from '../../../entities/Comment'
 import { getArticleCommentsIsLoading } from '../model/selectors/comments'
@@ -23,6 +25,7 @@ import {
   getArticleComments
 } from '../model/slices/articleDetailsCommentsSlice'
 import cls from './ArticleDetailsPage.module.scss'
+import { RoutePath } from 'shared/config/routeConfig/routePath'
 
 interface ArticleDetailsPageProps {
   className?: string
@@ -32,14 +35,20 @@ const reducers: ReducersList = {
   articleDetailsComments: articleDetailsCommentsReducer
 }
 
-const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
+const ArticleDetailsPage = (props: ArticleDetailsPageProps): JSX.Element => {
   const { className } = props
   const { t } = useTranslation('article')
   const { id } = useParams<{ id: string }>()
   const dispatch = useAppDispatch()
+
   // получаем комментарии использую нормализацию данных
   const comments = useAppSelector(getArticleComments.selectAll)
   const commentsIsLoading = useAppSelector(getArticleCommentsIsLoading)
+  const navigate = useNavigate()
+
+  const onBackToList = useCallback(() => {
+    navigate(RoutePath.articles)
+  }, [navigate])
 
   const onSendComment = useCallback(
     (text: string) => {
@@ -51,7 +60,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   // useInitialEffect используется для того, что бы получение данных не срабатывало, если идет
   // иницилизация storybook
   useInitialEffect(() => {
-    dispatch(fetchCommentsByArticleId(id))
+    if (id) {
+      dispatch(fetchCommentsByArticleId(id))
+    }
   })
 
   if (!id) {
@@ -65,6 +76,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+        <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
+          {t('Назад к списку')}
+        </Button>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t('comments')} />
         <AddNewComment onSendComment={onSendComment} />

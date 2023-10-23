@@ -1,21 +1,20 @@
-// ArticleDetailsPage.stories.ts|tsx
+// ArticleDetails.stories.ts|tsx
 import type { Meta, StoryObj } from '@storybook/react'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
-import { reactRouterParameters } from 'storybook-addon-react-router-v6'
 import {
-  type Article,
   ArticleBlockType,
-  ArticleType
-} from '../../../entities/Article/model/types/article'
-import ArticleDetailsPage from './ArticleDetailsPage'
+  ArticleType,
+  type Article
+} from '../../model/types/article'
+import { ArticleDetails } from './ArticleDetails'
 
-const meta: Meta<typeof ArticleDetailsPage> = {
-  title: 'pages/ArticleDetailsPage',
-  component: ArticleDetailsPage
+const meta: Meta<typeof ArticleDetails> = {
+  component: ArticleDetails,
+  title: 'entities/Article/ArticleDetails'
 }
 
 export default meta
-type Story = StoryObj<typeof ArticleDetailsPage>
+type Story = StoryObj<typeof ArticleDetails>
 
 const article: Article = {
   id: '1',
@@ -58,23 +57,34 @@ const article: Article = {
 }
 
 export const Normal: Story = {
-  args: {},
-  parameters: {
-    reactRouter: reactRouterParameters({
-      location: {
-        pathParams: { id: '1' }
-      },
-      routing: {
-        path: '/:id'
-      }
-    })
-  }
+  args: {}
 }
-
 Normal.decorators = [
   StoreDecorator({
     articleDetails: {
       data: article
+    }
+  })
+]
+
+export const Loading: Story = {
+  args: {}
+}
+Loading.decorators = [
+  StoreDecorator({
+    articleDetails: {
+      isLoading: true
+    }
+  })
+]
+
+export const Error: Story = {
+  args: {}
+}
+Error.decorators = [
+  StoreDecorator({
+    articleDetails: {
+      error: 'error'
     }
   })
 ]

@@ -9,8 +9,8 @@ import avatarImg from '../../../shared/assets/tests/tim_photo_600x600.png'
 import ProfilePage from './ProfilePage'
 
 const meta: Meta<typeof ProfilePage> = {
-  component: ProfilePage,
-  title: 'pages/ProfilePage'
+  title: 'pages/ProfilePage',
+  component: ProfilePage
 }
 
 export default meta

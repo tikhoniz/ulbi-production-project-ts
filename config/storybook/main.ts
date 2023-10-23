@@ -15,12 +15,13 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
-    '@storybook/addon-interactions'
+    '@storybook/addon-interactions',
+    'storybook-addon-react-router-v6'
   ],
   docs: {
     autodocs: 'tag'
   },
-  env: config => ({
+  env: (config) => ({
     ...config,
     __IS_DEV__: 'true'
   }),

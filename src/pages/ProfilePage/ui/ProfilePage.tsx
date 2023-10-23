@@ -23,11 +23,12 @@ import {
   getProfileValidateErrors,
   profileActions,
   profileReducer
-} from '../../../../src/entities/Profile'
+} from '../../../entities/Profile'
 import { type Country } from '../../../entities/Country'
 import { type Currency } from '../../../entities/Currency'
 import { ValidateProfileError } from '../../../entities/Profile/model/types/profile'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
+import { ArticleDetails } from '../../../entities/Article'
 
 const reducers: ReducersList = {
   profile: profileReducer
@@ -60,7 +61,7 @@ const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
   // иницилизация storybook
   useInitialEffect(() => {
     if (id) {
-      void dispatch(fetchProfileData(id))
+      dispatch(fetchProfileData(id))
     }
   })
 

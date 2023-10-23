@@ -7,12 +7,12 @@ import {
 } from '@reduxjs/toolkit'
 import { type AxiosInstance } from 'axios'
 import type { LoginSchema } from 'features/AuthByUsername'
-import { type ArticleDetailsCommentsSchema } from 'pages/ArcticleDetailsPage/model/types/ArticleDetailsCommentsSchema'
 import { type NavigateOptions, type To } from 'react-router-dom'
-import { type ArticleDetailsSchema } from '../../../../entities/Article'
 import type { ProfileSchema } from '../../../../entities/Profile'
 import type { UserSchema } from '../../../../entities/User'
 import { type AddNewCommentSchema } from 'features/addNewComment'
+import { type ArticleDetailsSchema } from '../../../../entities/Article'
+import { type ArticleDetailsCommentsSchema } from 'pages/ArcticleDetailsPage'
 
 export interface StateSchema {
   user: UserSchema

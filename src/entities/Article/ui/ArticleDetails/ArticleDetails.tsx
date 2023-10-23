@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
@@ -9,9 +9,9 @@ import {
   type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/reduxHooks/reduxHooks'
-import { ArticleCodeBlockComponent } from '../../../entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent'
-import { ArticleImageBlockComponent } from '../../../entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent'
-import { ArticleTextBlockComponent } from '../../../entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent'
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent'
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent'
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
 
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Icon } from 'shared/ui/Icon/Icon'
@@ -19,16 +19,16 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 import { Text, TextAlign } from 'shared/ui/Text/Text'
 
 // import { ArticleBlock, ArticleBlockType } from '../../model/types/article'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading
-} from '../model/selectors/articleDetails'
-import { fetchArticleById } from '../model/services/fetchArticleById/fetchArticleById'
-import { articleDetailsReducer } from '../model/slice/articleDetailsSlice'
-import { ArticleBlockType, type ArticleBlock } from '../model/types/article'
+} from '../../model/selectors/articleDetails'
+import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById'
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
+import { ArticleBlockType, type ArticleBlock } from '../../model/types/article'
 import cls from './ArticleDetails.module.scss'
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 
 interface ArticleDetailsProps {
   className?: string
