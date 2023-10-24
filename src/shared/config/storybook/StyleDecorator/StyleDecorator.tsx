@@ -5,7 +5,6 @@ export const StyleDecorator = (style?: any) => (StoryComponent: StoryFn) =>
   (
     <div
       style={{
-        padding: '20px',
         ...style
       }}
     >

@@ -10,5 +10,5 @@ export default meta
 type Story = StoryObj<typeof ArticlesPage>
 
 export const Normal: Story = {
-  args: {}
+  args: { className: 'storybook-pages' }
 }
