@@ -35,7 +35,7 @@ export const DynamicModuleLoader = (
     // Object.entries всегда воспринимает ключи объекта как строки, поэтому будет несоответствие типов, поэтому напрямую кастуем тип keyName к StateSchemaKey
     Object.entries(reducers).forEach(([keyName, reducer]) => {
       const mounted = mountedReducers[keyName as StateSchemaKey]
-
+      // добавляем редьюсер только если его нет
       if (!mounted) {
         store.reducerManager.add(keyName as StateSchemaKey, reducer)
         dispatch({ type: `@INIT ${keyName} reducer` })

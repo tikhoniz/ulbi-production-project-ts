@@ -31,7 +31,7 @@ type DeepPartial<T> = T extends object
       [P in keyof T]?: DeepPartial<T[P]>
     }
   : T
-
+// модифицированный type Record, в нем делаем поля необязательными
 type OptionalRecord<K extends keyof any, T> = {
   [P in K]?: T
 }

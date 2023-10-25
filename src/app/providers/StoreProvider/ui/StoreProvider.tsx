@@ -24,5 +24,6 @@ export const StoreProvider = (props: StoreProviderProps): JSX.Element => {
     asyncReducers as ReducersMapObject<StateSchema>
     // navigate
   )
+
   return <Provider store={store}>{children}</Provider>
 }

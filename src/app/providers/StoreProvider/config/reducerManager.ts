@@ -1,7 +1,12 @@
 // позволяет сделать подключение редьюсеров асинхронным, что поможет сделать основной бандл меньше, что улучшит оптимизацию
 import type { AnyAction, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 import { combineReducers } from '@reduxjs/toolkit'
-import type { MountedReducers, ReducerManager, StateSchema, StateSchemaKey } from './StateSchema'
+import type {
+  MountedReducers,
+  ReducerManager,
+  StateSchema,
+  StateSchemaKey
+} from './StateSchema'
 
 // на вход принимает initialReducers - дефолтные редьюсеры
 export function createReducerManager(
@@ -13,10 +18,12 @@ export function createReducerManager(
   let combinedReducer = combineReducers(reducers)
   // хранит название редьюсеров которые мы хотим удалить
   let keysToRemove: StateSchemaKey[] = []
+  // объект с вмонтироваными редьюсерами
   const mountedReducers: MountedReducers = {}
 
   return {
     getReducerMap: () => reducers,
+    //! fix: getMountedReducers дублирует функционал getReducerMap
     getMountedReducers: () => mountedReducers,
     // принимает стейт и экшн, но если в массиве keysToRemove есть какие либо ключи, то мы эти редьюсеры из стейта удаляем
     // This will be passed to the store
@@ -25,7 +32,7 @@ export function createReducerManager(
       if (keysToRemove.length > 0) {
         state = { ...state }
 
-        keysToRemove.forEach(key => {
+        keysToRemove.forEach((key) => {
           // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
           delete state[key]
         })

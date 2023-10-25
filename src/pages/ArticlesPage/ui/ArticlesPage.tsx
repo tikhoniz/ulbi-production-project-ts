@@ -16,11 +16,10 @@ import { ArticleList, type ArticleView } from '../../../entities/Article'
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
-  getArticlesPageNum,
   getArticlesPageView
 } from '../model/selectors/articlePageSelectors'
-import { fetchArticlesList } from '../model/services/fetchArticlesList/fetchArticlesList'
 import { fetchNextArticlesPage } from '../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from '../model/services/initArticlesPage/initArticlesPage'
 import {
   articlePageReducer,
   articlesPageActions,
@@ -44,7 +43,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const isLoading = useAppSelector(getArticlesPageIsLoading)
   const view = useAppSelector(getArticlesPageView)
   const error = useAppSelector(getArticlesPageError)
-  const page = useAppSelector(getArticlesPageNum)
 
   const onChangeView = useCallback(
     (view: ArticleView) => {
@@ -58,8 +56,9 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   }, [dispatch])
 
   useInitialEffect(() => {
-    dispatch(articlesPageActions.initState())
-    dispatch(fetchArticlesList({ page: 1 }))
+    // будет срабатывать только в случае если стэйт не инициализирован
+
+    dispatch(initArticlesPage)
   })
 
   return (
