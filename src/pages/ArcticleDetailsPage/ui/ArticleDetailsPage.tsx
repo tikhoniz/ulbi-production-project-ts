@@ -26,6 +26,7 @@ import {
 } from '../model/slices/articleDetailsCommentsSlice'
 import cls from './ArticleDetailsPage.module.scss'
 import { RoutePath } from 'shared/config/routeConfig/routePath'
+import { Page } from 'shared/ui/Page/Page'
 
 interface ArticleDetailsPageProps {
   className?: string
@@ -67,15 +68,15 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps): JSX.Element => {
 
   if (!id) {
     return (
-      <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         {t('ArticleNotFound')}
-      </div>
+      </Page>
     )
   }
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
           {t('Назад к списку')}
         </Button>
@@ -83,7 +84,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps): JSX.Element => {
         <Text className={cls.commentTitle} title={t('comments')} />
         <AddNewComment onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   )
 }

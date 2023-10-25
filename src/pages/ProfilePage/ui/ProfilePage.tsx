@@ -29,6 +29,7 @@ import { type Currency } from '../../../entities/Currency'
 import { ValidateProfileError } from '../../../entities/Profile/model/types/profile'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 import { ArticleDetails } from '../../../entities/Article'
+import { Page } from 'shared/ui/Page/Page'
 
 const reducers: ReducersList = {
   profile: profileReducer
@@ -116,7 +117,7 @@ const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames('', {}, [className])}>
+      <Page className={classNames('', {}, [className])}>
         <ProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err) => (
@@ -140,7 +141,7 @@ const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
           onChangeCurrency={onChangeCurrency}
           onChangeCountry={onChangeCountry}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   )
 }

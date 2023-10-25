@@ -10,25 +10,27 @@ import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesLi
 import { type ArticlePageSchema } from '../types/articlePageSchema'
 
 // Здесь используется нормализация данных
-const articleAdapter = createEntityAdapter<Article>({
+const articlesAdapter = createEntityAdapter<Article>({
   // поле по которому будет идти нормализация
   selectId: (article) => article.id
 })
 
 // селектор по которому получаются комментарии
-export const getArticles = articleAdapter.getSelectors<StateSchema>(
+export const getArticles = articlesAdapter.getSelectors<StateSchema>(
   // в getInitialState можно передать объект стейта по умолчанию
-  (state) => state.articlesPage ?? articleAdapter.getInitialState()
+  (state) => state.articlesPage ?? articlesAdapter.getInitialState()
 )
 
-const articlePageSlice = createSlice({
+const articlesPageSlice = createSlice({
   name: 'articlePageSlice',
-  initialState: articleAdapter.getInitialState<ArticlePageSchema>({
+  initialState: articlesAdapter.getInitialState<ArticlePageSchema>({
     isLoading: false,
     error: undefined,
     ids: [],
     entities: {},
-    view: ArticleView.LIST
+    view: ArticleView.LIST,
+    page: 1,
+    hasMore: true
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticleView>) => {
@@ -36,10 +38,15 @@ const articlePageSlice = createSlice({
       // сохраняем в локальном хранилище выбор пользователя
       localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload)
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload
+    },
     initState: (state) => {
-      state.view = localStorage.getItem(
+      const view = localStorage.getItem(
         ARTICLES_VIEW_LOCALSTORAGE_KEY
       ) as ArticleView
+      state.view = view
+      state.limit = view === ArticleView.BAR ? 4 : 9
     }
   },
   extraReducers: (builder) => {
@@ -52,7 +59,8 @@ const articlePageSlice = createSlice({
         fetchArticlesList.fulfilled,
         (state, action: PayloadAction<Article[]>) => {
           state.isLoading = false
-          articleAdapter.setAll(state, action.payload)
+          articlesAdapter.addMany(state, action.payload)
+          state.hasMore = action.payload.length > 0
         }
       )
       .addCase(fetchArticlesList.rejected, (state, action) => {
@@ -63,4 +71,4 @@ const articlePageSlice = createSlice({
 })
 
 export const { reducer: articlePageReducer, actions: articlesPageActions } =
-  articlePageSlice
+  articlesPageSlice
