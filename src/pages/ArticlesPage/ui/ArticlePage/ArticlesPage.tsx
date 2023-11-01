@@ -1,6 +1,6 @@
-import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classnames'
 import {
   DynamicModuleLoader,
@@ -11,20 +11,20 @@ import {
   useAppSelector
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
-import { Page } from 'shared/ui/Page/Page'
-import { ArticleList, type ArticleView } from '../../../entities/Article'
+import { Page } from 'widgets/Page/Page'
+import { ArticleList } from '../../../../entities/Article'
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
   getArticlesPageView
-} from '../model/selectors/articlePageSelectors'
-import { fetchNextArticlesPage } from '../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
-import { initArticlesPage } from '../model/services/initArticlesPage/initArticlesPage'
+} from '../../model/selectors/articlePageSelectors'
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
 import {
   articlePageReducer,
-  articlesPageActions,
   getArticles
-} from '../model/slices/articlesPageSlice'
+} from '../../model/slices/articlesPageSlice'
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters'
 import cls from './ArticlesPage.module.scss'
 
 interface ArticlesPageProps {
@@ -39,17 +39,12 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
+  // получаем данные из стейта
   const articles = useAppSelector(getArticles.selectAll)
   const isLoading = useAppSelector(getArticlesPageIsLoading)
   const view = useAppSelector(getArticlesPageView)
   const error = useAppSelector(getArticlesPageError)
-
-  const onChangeView = useCallback(
-    (view: ArticleView) => {
-      dispatch(articlesPageActions.setView(view))
-    },
-    [dispatch]
-  )
+  const [searchParams] = useSearchParams()
 
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage())
@@ -57,17 +52,17 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
   useInitialEffect(() => {
     // будет срабатывать только в случае если стэйт не инициализирован
-
-    dispatch(initArticlesPage)
+    dispatch(initArticlesPage(searchParams))
   })
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    // не удаляем редьюсер с данными о статьях, чтобы можно было вернуться назад к списку статей на загружая их вновь
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
         onScrollEnd={onLoadNextPart}
         className={classNames(cls.ArticlesPage, {}, [className])}
       >
-        <ArticleViewSelector view={view} onViewClick={onChangeView} />
+        <ArticlesPageFilters />
         <ArticleList view={view} isLoading={isLoading} articles={articles} />
       </Page>
     </DynamicModuleLoader>

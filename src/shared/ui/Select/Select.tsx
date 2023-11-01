@@ -1,22 +1,25 @@
-import { memo, useMemo, type ChangeEvent } from 'react'
+import { useMemo, type ChangeEvent } from 'react'
 import { classNames, type Mods } from 'shared/lib/classNames/classnames'
 import cls from './Select.module.scss'
 
-export interface SelectOption {
-  value: string
+export interface SelectOption<T extends string> {
+  value: T
   content: string
 }
 
-interface SelectProps {
+interface SelectProps<T extends string> {
   className?: string
   label?: string
-  options?: SelectOption[]
-  value?: string
+  options?: Array<SelectOption<T>>
+  value?: T
   onChange?: (value: string) => void
   readonly?: boolean
 }
 
-export const Select = memo((props: SelectProps): JSX.Element => {
+// использование memo плохо сочетается с дженериками
+export const Select = <T extends string>(
+  props: SelectProps<T>
+): JSX.Element => {
   const { className, label, options, value, onChange, readonly } = props
 
   const mods: Mods = {}
@@ -26,12 +29,8 @@ export const Select = memo((props: SelectProps): JSX.Element => {
   }
 
   const optionsList = useMemo(() => {
-    return options?.map(item => (
-      <option
-        className={cls.option}
-        value={item.value}
-        key={item.value}
-      >
+    return options?.map((item) => (
+      <option className={cls.option} value={item.value} key={item.value}>
         {item.content}
       </option>
     ))
@@ -50,4 +49,4 @@ export const Select = memo((props: SelectProps): JSX.Element => {
       </select>
     </div>
   )
-})
+}

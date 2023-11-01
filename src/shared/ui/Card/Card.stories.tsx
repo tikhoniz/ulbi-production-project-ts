@@ -1,12 +1,12 @@
 // Card.stories.ts|tsx
 import { type Meta, type StoryObj } from '@storybook/react'
+import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator'
 import { Text } from '../Text/Text'
 import { Card } from './Card'
-import { StyleDecorator } from 'shared/config/storybook/StyleDecorator/StyleDecorator'
 
 const meta: Meta<typeof Card> = {
-  component: Card,
-  title: 'shared/Card'
+  title: 'shared/Card',
+  component: Card
 }
 
 export default meta

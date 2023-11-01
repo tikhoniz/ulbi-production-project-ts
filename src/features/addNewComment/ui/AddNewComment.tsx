@@ -35,6 +35,7 @@ const AddNewComment = ({
   onSendComment
 }: AddNewCommentProps): JSX.Element => {
   const { t } = useTranslation()
+  // получаем данные из стейта
   const text = useAppSelector(getAddNewCommentText)
   const error = useAppSelector(getAddNewCommentError)
   const dispatch = useAppDispatch()

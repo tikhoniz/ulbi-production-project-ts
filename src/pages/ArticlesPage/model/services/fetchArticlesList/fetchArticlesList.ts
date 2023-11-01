@@ -1,10 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type ThunkConfig } from 'app/providers/StoreProvider'
-import { type Article } from '../../../../../entities/Article'
-import { getArticlesPageLimit } from '../../selectors/articlePageSelectors'
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams'
+import { ArticleType, type Article } from '../../../../../entities/Article'
+import {
+  getArticlesPageLimit,
+  getArticlesPageNum,
+  getArticlesPageOrder,
+  getArticlesPageSearch,
+  getArticlesPageSort,
+  getArticlesPageType
+} from '../../selectors/articlePageSelectors'
 
 interface FetchArticlesListProps {
-  page: number
+  replace?: boolean
 }
 
 export const fetchArticlesList = createAsyncThunk<
@@ -13,23 +21,38 @@ FetchArticlesListProps,
 ThunkConfig<string>
 >('articlePage/fetchArticlesList', async (props, thunkApi) => {
   const { extra, rejectWithValue, getState } = thunkApi
-  const { page = 1 } = props
+  // получаем данные из стейта
   const limit = getArticlesPageLimit(getState())
+  const sort = getArticlesPageSort(getState())
+  const order = getArticlesPageOrder(getState())
+  const search = getArticlesPageSearch(getState())
+  const page = getArticlesPageNum(getState())
+  const type = getArticlesPageType(getState())
 
   try {
+    addQueryParams({
+      sort,
+      order,
+      search,
+      type
+    })
+
     const response = await extra.api.get<Article[]>('/articles', {
       params: {
         // TODO разобраться с _expand, и почему он подтягивает юзера
         _expand: 'user',
         _limit: limit,
-        _page: page
+        _page: page,
+        _sort: sort,
+        _order: order,
+        q: search,
+        type: type === ArticleType.ALL ? undefined : type
       }
     })
 
     if (!response.data) {
       throw new Error()
     }
-    console.log('response.data', response.data)
 
     return response.data
   } catch (e) {

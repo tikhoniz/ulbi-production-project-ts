@@ -13,6 +13,9 @@ import {
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { Page } from 'widgets/Page/Page'
+import { type Country } from '../../../entities/Country'
+import { type Currency } from '../../../entities/Currency'
 import {
   ProfileCard,
   fetchProfileData,
@@ -24,12 +27,8 @@ import {
   profileActions,
   profileReducer
 } from '../../../entities/Profile'
-import { type Country } from '../../../entities/Country'
-import { type Currency } from '../../../entities/Currency'
 import { ValidateProfileError } from '../../../entities/Profile/model/types/profile'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
-import { ArticleDetails } from '../../../entities/Article'
-import { Page } from 'shared/ui/Page/Page'
 
 const reducers: ReducersList = {
   profile: profileReducer
@@ -43,6 +42,7 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
   const { t } = useTranslation('')
   const dispatch = useAppDispatch()
+  // получаем данные из стейта
   const formData = useAppSelector(getProfileForm)
   const isLoading = useAppSelector(getProfileIsLoading)
   const error = useAppSelector(getProfileError)

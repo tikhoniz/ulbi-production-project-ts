@@ -14,6 +14,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false)
+  // получаем данные из стейта
   const sidebarItemsList = useAppSelector(getSidebarItems)
 
   const onToggle = () => setCollapsed((prev) => !prev)

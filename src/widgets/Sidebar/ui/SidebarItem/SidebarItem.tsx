@@ -15,7 +15,7 @@ interface SidebarItemProps {
 export const SidebarItem = memo(
   ({ item, collapsed }: SidebarItemProps): JSX.Element => {
     const { t } = useTranslation()
-
+    // получаем данные из стейта
     const isAuth = useAppSelector(getUserAuthData)
 
     if (item.authOnly && !isAuth) {

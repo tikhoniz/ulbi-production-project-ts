@@ -37,6 +37,7 @@ const LoginForm = memo(
   ({ className, onSuccess }: LoginFormProps): JSX.Element => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
+    // получаем данные из стейта
     const username = useAppSelector(getLoginUsername)
     const password = useAppSelector(getLoginPassword)
     const error = useAppSelector(getLoginError)

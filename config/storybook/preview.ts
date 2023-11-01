@@ -39,6 +39,15 @@ const CUSTOM_VIEWPORTS = {
 const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
+    backgrounds: {
+      values: [
+        { name: 'red', value: '#f00' },
+        { name: 'green', value: '#0f0' },
+        { name: 'blue', value: '#00f' },
+        { name: 'black', value: '#000' },
+        { name: 'white', value: '#fff' }
+      ]
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {

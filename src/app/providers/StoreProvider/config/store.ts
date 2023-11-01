@@ -6,13 +6,19 @@ import {
 } from '@reduxjs/toolkit'
 import { $api } from 'shared/api/api'
 
+import { uiReducer } from 'features/UI'
 import { userReducer } from '../../../../entities/User'
 import { createReducerManager } from './reducerManager'
-import { type StateSchema, type StateSchemaKey, type ThunkExtraArg } from './StateSchema'
+import {
+  type StateSchema,
+  type StateSchemaKey,
+  type ThunkExtraArg
+} from './StateSchema'
 
 // обязательные редьюсеры
 const rootReducers: ReducersMapObject<StateSchema> = {
-  user: userReducer
+  user: userReducer,
+  ui: uiReducer
 }
 // создаем менеджер редьюсеров для возможности добавлять их асинхронно
 const reducerManager = createReducerManager(rootReducers)
@@ -37,7 +43,7 @@ export function createReduxStore(
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-    middleware: getDefaultMiddleware =>
+    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: { extraArgument: extraArg }
       })

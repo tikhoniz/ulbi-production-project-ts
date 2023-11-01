@@ -7,16 +7,18 @@ import {
 } from '@reduxjs/toolkit'
 import { type AxiosInstance } from 'axios'
 import type { LoginSchema } from 'features/AuthByUsername'
+import { type UISchema } from 'features/UI'
 import { type AddNewCommentSchema } from 'features/addNewComment'
 import { type ArticleDetailsCommentsSchema } from 'pages/ArcticleDetailsPage'
 import { type ArticlePageSchema } from 'pages/ArticlesPage'
-import { type NavigateOptions, type To } from 'react-router-dom'
 import { type ArticleDetailsSchema } from '../../../../entities/Article'
 import type { ProfileSchema } from '../../../../entities/Profile'
 import type { UserSchema } from '../../../../entities/User'
 
 export interface StateSchema {
   user: UserSchema
+  // позиция скролла
+  ui: UISchema
   // асинхронные редьюсеры
   loginForm?: LoginSchema
   profile?: ProfileSchema

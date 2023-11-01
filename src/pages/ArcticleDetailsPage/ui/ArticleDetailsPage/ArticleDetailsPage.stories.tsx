@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 import { reactRouterParameters } from 'storybook-addon-react-router-v6'
 import {
-  type Article,
   ArticleBlockType,
-  ArticleType
-} from '../../../entities/Article/model/types/article'
+  ArticleType,
+  type Article
+} from '../../../../entities/Article/model/types/article'
 import ArticleDetailsPage from './ArticleDetailsPage'
 
 const meta: Meta<typeof ArticleDetailsPage> = {

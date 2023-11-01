@@ -14,19 +14,19 @@ import {
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Text } from 'shared/ui/Text/Text'
 
+import { RoutePath } from 'shared/config/routeConfig/routePath'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
-import { ArticleDetails } from '../../../entities/Article'
-import { CommentList } from '../../../entities/Comment'
-import { getArticleCommentsIsLoading } from '../model/selectors/comments'
-import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle'
-import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
+import { Page } from 'widgets/Page/Page'
+import { ArticleDetails } from '../../../../entities/Article'
+import { CommentList } from '../../../../entities/Comment'
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import {
   articleDetailsCommentsReducer,
   getArticleComments
-} from '../model/slices/articleDetailsCommentsSlice'
+} from '../../model/slices/articleDetailsCommentsSlice'
 import cls from './ArticleDetailsPage.module.scss'
-import { RoutePath } from 'shared/config/routeConfig/routePath'
-import { Page } from 'shared/ui/Page/Page'
 
 interface ArticleDetailsPageProps {
   className?: string

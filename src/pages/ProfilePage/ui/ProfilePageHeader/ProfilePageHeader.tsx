@@ -24,7 +24,7 @@ export const ProfilePageHeader = ({
   className
 }: ProfilePageHeaderProps): JSX.Element => {
   const { t } = useTranslation('profile')
-
+  // получаем данные из стейта
   const authData = useAppSelector(getUserAuthData)
   const profileData = useAppSelector(getProfileData)
   const canEdit = authData?.id === profileData?.id
