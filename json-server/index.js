@@ -13,7 +13,7 @@ server.use(jsonServer.bodyParser)
 server.use(async (req, res, next) => {
   console.log('Promise')
   // eslint-disable-next-line promise/param-names
-  await new Promise(res => {
+  await new Promise((res) => {
     setTimeout(res, 800)
   })
   next()
@@ -23,10 +23,14 @@ server.use(async (req, res, next) => {
 server.post('/login', (req, res) => {
   try {
     const { username, password } = req.body
-    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'))
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8')
+    )
     const { users = [] } = db
 
-    const userFromBd = users.find(user => user.username === username && user.password === password)
+    const userFromBd = users.find(
+      (user) => user.username === username && user.password === password
+    )
 
     if (userFromBd) {
       return res.json(userFromBd)

@@ -9,6 +9,8 @@ import {
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { userActions } from '../../../entities/User'
 import cls from './Navbar.module.scss'
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
+import { RoutePath } from 'shared/config/routeConfig/routePath'
 
 interface NavbarProps {
   className?: string
@@ -35,6 +37,13 @@ export const Navbar = memo(({ className }: NavbarProps): JSX.Element => {
   if (authData) {
     return (
       <header className={classNames(cls.Navbar, {}, [className])}>
+        <AppLink
+          to={RoutePath.article_create}
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.createBtn}
+        >
+          {t('Создать статью')}
+        </AppLink>
         <Button
           onClick={onLogout}
           className={classNames(cls.open, {}, [className])}
