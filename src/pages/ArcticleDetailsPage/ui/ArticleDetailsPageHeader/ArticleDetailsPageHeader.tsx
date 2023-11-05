@@ -7,7 +7,7 @@ import { useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import cls from './ArticleDetailsPageHeader.module.scss'
 import { getArticleDetailsData } from '../../../../entities/Article'
-import { getCanEditArticle } from 'pages/ArcticleDetailsPage/model/selectors/article'
+import { getCanEditArticle } from '../../model/selectors/article'
 
 interface ArticleDetailsPageHeaderProps {
   className?: string

@@ -1,13 +1,10 @@
 /* eslint-disable spaced-comment */
-import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError'
-import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading'
-import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword'
-import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername'
-import { loginByUsername } from 'features/AuthByUsername/model/services/login/loginByUsername'
-import {
-  loginActions,
-  loginReducer
-} from 'features/AuthByUsername/model/slice/loginSlice'
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError'
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading'
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword'
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername'
+import { loginByUsername } from '../../model/services/login/loginByUsername'
+import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classnames'

@@ -11,9 +11,9 @@ import { articlesPageActions } from '../../slices/articlesPageSlice'
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
 
 export const initArticlesPage = createAsyncThunk<
-  void,
-  URLSearchParams,
-  ThunkConfig<string>
+void,
+URLSearchParams,
+ThunkConfig<string>
 >('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
   const { getState, dispatch } = thunkApi
   const inited = getArticlesPageInited(getState())

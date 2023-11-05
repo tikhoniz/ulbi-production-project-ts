@@ -11,10 +11,7 @@ import {
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
 import { Input } from 'shared/ui/Input/Input'
-import {
-  getAddNewCommentError,
-  getAddNewCommentText
-} from '../model/selectors/AddNewCommentSelectors'
+import { getAddNewCommentText } from '../model/selectors/AddNewCommentSelectors'
 import {
   addNewCommentActions,
   addNewCommentReducer
@@ -37,7 +34,7 @@ const AddNewComment = ({
   const { t } = useTranslation()
   // получаем данные из стейта
   const text = useAppSelector(getAddNewCommentText)
-  const error = useAppSelector(getAddNewCommentError)
+  // const error = useAppSelector(getAddNewCommentError)
   const dispatch = useAppDispatch()
 
   // поскольку мы передаем функцию пропсом оборачиваем в useCallback

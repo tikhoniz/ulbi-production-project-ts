@@ -15,18 +15,30 @@ module.exports = {
       env: {
         node: true
       },
-      files: ['.eslintrc.{js,cjs}'],
+      files: ['.eslintrc.{js,cjs}', '**/src/**/*.{test,stories}.{ts,tsx}'],
       parserOptions: {
         sourceType: 'script'
       }
     }
   ],
+  // parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.eslint.json',
+    ecmaFeatures: {
+      jsx: true
+    },
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', 'i18next', '@typescript-eslint', 'react-hooks'],
+  plugins: [
+    'react',
+    'i18next',
+    '@typescript-eslint',
+    'react-hooks',
+    'bright-plugin'
+    // 'ulbi-tv-plugin'
+    // 'tikhon-plugin'
+  ],
   rules: {
     // отключает правило, требующее обязательный импорт React при использовании JSX.
     'react/react-in-jsx-scope': 'off',
@@ -78,7 +90,11 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'multiline-ternary': 'off',
-    '@typescript-eslint/no-floating-promises': 'off' // обнаруживает только необработанные операторы Promise
+    '@typescript-eslint/no-floating-promises': 'off', // обнаруживает только необработанные операторы Promise
+    // мои правила
+    'bright-plugin/path-checker': 'error'
+    // 'tikhon-plugin/path-checker': 'error'
+    // 'ulbi-tv-plugin/path-checker': 'error'
   },
   globals: {
     __IS_DEV__: true,

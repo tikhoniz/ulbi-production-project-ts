@@ -1,9 +1,12 @@
-import { memo, useRef, type ChangeEvent, type InputHTMLAttributes } from 'react'
-import { classNames, type Mods } from 'shared/lib/classNames/classnames'
+import { memo, type ChangeEvent, type InputHTMLAttributes } from 'react'
+import { classNames } from 'shared/lib/classNames/classnames'
 import cls from './Input.module.scss'
 
 // Omit позволяет забрать из типа все пропсы и исключить которые не нужны
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
+type HTMLInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'value' | 'onChange' | 'readOnly'
+>
 
 interface InputProps extends HTMLInputProps {
   className?: string

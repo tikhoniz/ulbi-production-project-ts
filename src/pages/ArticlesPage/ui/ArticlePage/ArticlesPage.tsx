@@ -1,5 +1,4 @@
 import { memo, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classnames'
 import {
@@ -14,7 +13,6 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { Page } from 'widgets/Page/Page'
 import { ArticleList } from '../../../../entities/Article'
 import {
-  getArticlesPageError,
   getArticlesPageIsLoading,
   getArticlesPageView
 } from '../../model/selectors/articlePageSelectors'
@@ -37,13 +35,13 @@ const reducers: ReducersList = {
 
 const ArticlesPage = (props: ArticlesPageProps) => {
   const { className } = props
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   const dispatch = useAppDispatch()
   // получаем данные из стейта
   const articles = useAppSelector(getArticles.selectAll)
   const isLoading = useAppSelector(getArticlesPageIsLoading)
   const view = useAppSelector(getArticlesPageView)
-  const error = useAppSelector(getArticlesPageError)
+  // const error = useAppSelector(getArticlesPageError)
   const [searchParams] = useSearchParams()
 
   const onLoadNextPart = useCallback(() => {

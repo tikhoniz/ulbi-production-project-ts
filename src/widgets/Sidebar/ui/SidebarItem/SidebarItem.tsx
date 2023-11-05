@@ -5,7 +5,7 @@ import { useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { getUserAuthData } from '../../../../entities/User/model/selectors/getUserAuthData/getUserAuthData'
 import cls from './SidebarItem.module.scss'
-import { type SidebarItemType } from 'widgets/Sidebar/model/types/sidebar'
+import { type SidebarItemType } from '../../model/types/sidebar'
 
 interface SidebarItemProps {
   item: SidebarItemType
