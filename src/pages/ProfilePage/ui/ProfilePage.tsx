@@ -12,6 +12,7 @@ import {
   useAppSelector
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { VerticalStack } from 'shared/ui/Stack/VerticalStack/VerticalStack'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
 import { Page } from 'widgets/Page/Page'
 import { type Country } from '../../../entities/Country'
@@ -118,29 +119,31 @@ const ProfilePage = ({ className }: ProfilePageProps): JSX.Element => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames('', {}, [className])}>
-        <ProfilePageHeader />
-        {validateErrors?.length &&
-          validateErrors.map((err) => (
-            <Text
-              key={err}
-              theme={TextTheme.ERROR}
-              text={validateErrorTranslates[err]}
-            />
-          ))}
-        <ProfileCard
-          data={formData}
-          isLoading={isLoading}
-          error={error}
-          readonly={readonly}
-          onChangeFirstname={onChangeFirstname}
-          onChangeLastname={onChangeLastname}
-          onChangeAge={onChangeAge}
-          onChangeCity={onChangeCity}
-          onChangeAvatar={onChangeAvatar}
-          onChangeUserName={onChangeUserName}
-          onChangeCurrency={onChangeCurrency}
-          onChangeCountry={onChangeCountry}
-        />
+        <VerticalStack gap={'16'} fullWidth>
+          <ProfilePageHeader />
+          {validateErrors?.length &&
+            validateErrors.map((err) => (
+              <Text
+                key={err}
+                theme={TextTheme.ERROR}
+                text={validateErrorTranslates[err]}
+              />
+            ))}
+          <ProfileCard
+            data={formData}
+            isLoading={isLoading}
+            error={error}
+            readonly={readonly}
+            onChangeFirstname={onChangeFirstname}
+            onChangeLastname={onChangeLastname}
+            onChangeAge={onChangeAge}
+            onChangeCity={onChangeCity}
+            onChangeAvatar={onChangeAvatar}
+            onChangeUserName={onChangeUserName}
+            onChangeCurrency={onChangeCurrency}
+            onChangeCountry={onChangeCountry}
+          />
+        </VerticalStack>
       </Page>
     </DynamicModuleLoader>
   )

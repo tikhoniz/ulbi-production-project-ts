@@ -7,6 +7,7 @@ import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import cls from './Sidebar.module.scss'
+import { VerticalStack } from 'shared/ui/Stack/VerticalStack/VerticalStack'
 
 interface SidebarProps {
   className?: string
@@ -45,7 +46,9 @@ export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
         {collapsed ? '>' : '<'}
       </Button>
 
-      <div className={cls.items}>{itemsList}</div>
+      <VerticalStack gap='8' className={cls.items}>
+        {itemsList}
+      </VerticalStack>
 
       <div className={cls.switchers}>
         <ThemeSwitcher />

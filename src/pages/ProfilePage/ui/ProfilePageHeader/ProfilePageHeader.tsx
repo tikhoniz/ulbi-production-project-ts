@@ -14,7 +14,7 @@ import {
   updateProfileData
 } from '../../../../entities/Profile'
 import { getUserAuthData } from '../../../../entities/User'
-import cls from './ProfilePageHeader.module.scss'
+import { HorizontalStack } from 'shared/ui/Stack/HorizontalStack/HorizontalStack'
 
 interface ProfilePageHeaderProps {
   className?: string
@@ -47,38 +47,30 @@ export const ProfilePageHeader = ({
   }, [dispatch])
 
   return (
-    <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
+    <HorizontalStack
+      fullWidth
+      justify={'between'}
+      className={classNames('', {}, [className])}
+    >
       <Text title={t('profile')} />
       {canEdit && (
-        <div className={cls.btnsWrapper}>
+        <>
           {readonly ? (
-            <Button
-              className={cls.editBtn}
-              theme={ButtonTheme.OUTLINE}
-              onClick={onEdit}
-            >
+            <Button theme={ButtonTheme.OUTLINE} onClick={onEdit}>
               {t('editProfile')}
             </Button>
           ) : (
-            <>
-              <Button
-                className={cls.editBtn}
-                theme={ButtonTheme.OUTLINE_RED}
-                onClick={onCancelEdit}
-              >
+            <HorizontalStack gap={'8'}>
+              <Button theme={ButtonTheme.OUTLINE_RED} onClick={onCancelEdit}>
                 {t('cancelEditProfile')}
               </Button>
-              <Button
-                className={cls.saveBtn}
-                theme={ButtonTheme.OUTLINE}
-                onClick={onSave}
-              >
+              <Button theme={ButtonTheme.OUTLINE} onClick={onSave}>
                 {t('saveProfile')}
               </Button>
-            </>
+            </HorizontalStack>
           )}
-        </div>
+        </>
       )}
-    </div>
+    </HorizontalStack>
   )
 }
