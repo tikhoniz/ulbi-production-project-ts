@@ -1,7 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared/lib/classNames/classnames'
-import { Select } from 'shared/ui/Select/Select'
+import { ListBox } from 'shared/ui/ListBox/ListBox'
 import { Country } from '../../model/types/country'
 
 interface CountrySelectProps {
@@ -19,7 +18,12 @@ const options = [
 ]
 
 export const CountrySelect = memo(
-  ({ className, value, onChange, readonly }: CountrySelectProps): JSX.Element => {
+  ({
+    className,
+    value,
+    onChange,
+    readonly
+  }: CountrySelectProps): JSX.Element => {
     const { t } = useTranslation()
 
     const onChangeHandler = useCallback(
@@ -28,16 +32,28 @@ export const CountrySelect = memo(
       },
       [onChange]
     )
-
+    // используя библиотеку Headless UI
     return (
-      <Select
-        className={classNames('', {}, [className])}
-        label={t('country')}
-        options={options}
-        value={value}
+      <ListBox
         onChange={onChangeHandler}
+        value={value}
+        defaultValue={t('Укажите страну')}
+        label={t('Укажите страну')}
+        items={options}
         readonly={readonly}
+        direction='top'
       />
     )
+    // кастомный элемент
+    // return (
+    //   <Select
+    //     className={classNames('', {}, [className])}
+    //     label={t('country')}
+    //     options={options}
+    //     value={value}
+    //     onChange={onChangeHandler}
+    //     readonly={readonly}
+    //   />
+    // )
   }
 )

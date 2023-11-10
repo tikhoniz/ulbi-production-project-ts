@@ -1,6 +1,10 @@
 // CSS: Компонент для позиционирования
-import { type ReactNode } from 'react'
-import { type Mods, classNames } from 'shared/lib/classNames/classnames'
+import {
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+  type ReactNode
+} from 'react'
+import { classNames, type Mods } from 'shared/lib/classNames/classnames'
 import cls from './Flex.module.scss'
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between'
@@ -51,7 +55,13 @@ const gapClasses: Record<FlexGap, string> = {
   32: cls.gap32
 }
 
-export interface FlexProps {
+type DivProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>
+// расширяем стандартными  пропсами дива (div)
+// таким образом появятся все пропсы которые есть у дивов (role, onClick и т.д.)
+export interface FlexProps extends DivProps {
   className?: string
   children: ReactNode
   justify?: FlexJustify

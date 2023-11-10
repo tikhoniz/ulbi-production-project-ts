@@ -61,18 +61,10 @@ export const OnlyTextDark: Story = {
 }
 OnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)]
 
-export const SizeM: Story = {
+export const Size: Story = {
   args: {
     title: 'Titlte lorem',
-    text: 'Description Description Description Description',
-    size: TextSize.M
-  }
-}
-
-export const SizeXL: Story = {
-  args: {
-    title: 'Titlte lorem',
-    text: 'Description Description Description Description',
-    size: TextSize.L
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit distinctio iure suscipit quae, facilis recusandae commodi itaque vel, iste aut officiis harum, reprehenderit rem laborum totam sint dignissimos laudantium ab!',
+    size: TextSize.S
   }
 }

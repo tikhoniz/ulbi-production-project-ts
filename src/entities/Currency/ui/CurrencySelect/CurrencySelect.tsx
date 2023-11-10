@@ -1,7 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared/lib/classNames/classnames'
-import { Select } from 'shared/ui/Select/Select'
+import { ListBox } from 'shared/ui/ListBox/ListBox'
 import { Currency } from '../../../../entities/Currency/model/types/currency'
 
 interface CurrencySelectProps {
@@ -18,7 +17,12 @@ const options = [
 ]
 
 export const CurrencySelect = memo(
-  ({ className, value, onChange, readonly }: CurrencySelectProps): JSX.Element => {
+  ({
+    className,
+    value,
+    onChange,
+    readonly
+  }: CurrencySelectProps): JSX.Element => {
     const { t } = useTranslation()
 
     const onChangeHandler = useCallback(
@@ -27,16 +31,30 @@ export const CurrencySelect = memo(
       },
       [onChange]
     )
-
+    // используя библиотеку Headless UI
     return (
-      <Select
-        className={classNames('', {}, [className])}
-        label={t('currency')}
-        options={options}
+      <ListBox
+        className={className}
         value={value}
+        defaultValue={t('Укажите валюту')}
+        label={t('Укажите валюту')}
+        items={options}
         onChange={onChangeHandler}
         readonly={readonly}
+        direction='top'
       />
     )
+
+    // кастомный элемент
+    // return (
+    //   <Select
+    //     className={classNames('', {}, [className])}
+    //     label={t('currency')}
+    //     options={options}
+    //     value={value}
+    //     onChange={onChangeHandler}
+    //     readonly={readonly}
+    //   />
+    // )
   }
 )

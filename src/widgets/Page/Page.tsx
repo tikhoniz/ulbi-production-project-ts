@@ -36,8 +36,6 @@ export const Page = (props: PageProps): JSX.Element => {
     getUIScrollByPath(state, pathname)
   )
 
-  console.log('scrollPosition', scrollPosition)
-
   useInfiniteScroll({
     triggerRef,
     wrapperRef,
@@ -60,7 +58,7 @@ export const Page = (props: PageProps): JSX.Element => {
   // console.log('wrapperRef', wrapperRef?.current?.scrollTop)
 
   return (
-    <section
+    <main
       ref={wrapperRef}
       className={classNames(cls.Page, {}, [className])}
       onScroll={onScrollHandle}
@@ -69,6 +67,6 @@ export const Page = (props: PageProps): JSX.Element => {
       {/* при появлении в области видимости этого дива будет срабатывать коллбэк в useInfiniteScroll */}
       {/* для того чтобы обзервер стабильно отлавливал див, добавляем ему высоту и отступ */}
       {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
-    </section>
+    </main>
   )
 }

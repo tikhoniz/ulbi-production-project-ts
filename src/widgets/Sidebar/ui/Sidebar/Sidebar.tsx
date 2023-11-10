@@ -2,12 +2,12 @@ import { memo, useMemo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classnames'
 import { useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button'
+import { VerticalStack } from 'shared/ui/Stack/VerticalStack/VerticalStack'
 import { LangSwitcher } from 'widgets/LangSwitcher'
-import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
+import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import cls from './Sidebar.module.scss'
-import { VerticalStack } from 'shared/ui/Stack/VerticalStack/VerticalStack'
 
 interface SidebarProps {
   className?: string
@@ -29,7 +29,7 @@ export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
   )
 
   return (
-    <menu
+    <aside
       data-testid='sidebar'
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
         className
@@ -45,8 +45,8 @@ export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
       >
         {collapsed ? '>' : '<'}
       </Button>
-
-      <VerticalStack gap='8' className={cls.items}>
+      {/* для семантики изменяем обычный див на навигацию */}
+      <VerticalStack role='navigation' gap='8' className={cls.items}>
         {itemsList}
       </VerticalStack>
 
@@ -54,6 +54,6 @@ export const Sidebar = memo(({ className }: SidebarProps): JSX.Element => {
         <ThemeSwitcher />
         <LangSwitcher short={collapsed} className={cls.lang} />
       </div>
-    </menu>
+    </aside>
   )
 })
