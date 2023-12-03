@@ -7,7 +7,7 @@ import {
   type MutableRefObject,
   type ReactNode
 } from 'react'
-import { classNames, type Mods } from 'shared/lib/classNames/classnames'
+import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 import { Portal } from '../Portal/Portal'
 import cls from './Modal.module.scss'
 
@@ -93,14 +93,8 @@ export const Modal = (props: ModalProps): JSX.Element => {
   return (
     <Portal>
       <div className={classNames(cls.Modal, mods, [className])}>
-        <div
-          className={cls.overlay}
-          onClick={closeHandler}
-        >
-          <div
-            className={cls.content}
-            onClick={onContentClick}
-          >
+        <div className={cls.overlay} onClick={closeHandler}>
+          <div className={cls.content} onClick={onContentClick}>
             {children}
           </div>
         </div>

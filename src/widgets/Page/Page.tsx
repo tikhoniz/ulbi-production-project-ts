@@ -7,7 +7,7 @@ import {
   type UIEvent
 } from 'react'
 import { useLocation } from 'react-router-dom'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { useThrottle } from 'shared/lib/hooks/optimiseHooks/useThrottle'
 import {
   useAppDispatch,

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { classNames, type Mods } from 'shared/lib/classNames/classnames'
+import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Input } from 'shared/ui/Input/Input'
 import { Loader } from 'shared/ui/Loader/Loader'

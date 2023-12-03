@@ -1,11 +1,12 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import {
   useAppDispatch,
   useAppSelector
 } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonTheme } from 'shared/ui/Button/Button'
+import { HorizontalStack } from 'shared/ui/Stack/HorizontalStack/HorizontalStack'
 import { Text } from 'shared/ui/Text/Text'
 import {
   getProfileData,
@@ -14,7 +15,6 @@ import {
   updateProfileData
 } from '../../../../entities/Profile'
 import { getUserAuthData } from '../../../../entities/User'
-import { HorizontalStack } from 'shared/ui/Stack/HorizontalStack/HorizontalStack'
 
 interface ProfilePageHeaderProps {
   className?: string

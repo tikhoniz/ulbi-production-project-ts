@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider'
 import { Suspense, useEffect } from 'react'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import {
   useAppDispatch,
   useAppSelector

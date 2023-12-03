@@ -1,5 +1,5 @@
 import { memo, useMemo, useState } from 'react'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { useAppSelector } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button'
 import { VerticalStack } from 'shared/ui/Stack/VerticalStack/VerticalStack'

@@ -16,7 +16,8 @@
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
     "chromatic": "chromatic --project-token=chpt_97c927f3781fa9f --build-script-name storybook:build",
-    "chromatic:ui:ok": "chromatic --auto-accept-changes --project-token=chpt_97c927f3781fa9f --build-script-name storybook:build"
+    "chromatic:ui:ok": "chromatic --auto-accept-changes --project-token=chpt_97c927f3781fa9f --build-script-name storybook:build",
+    "generate:slice": "node ./scripts/createSlice/index.js"
   },
   "keywords": [],
   "author": "",

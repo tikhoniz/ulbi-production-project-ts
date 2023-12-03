@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import {
   DynamicModuleLoader,
   type ReducersList

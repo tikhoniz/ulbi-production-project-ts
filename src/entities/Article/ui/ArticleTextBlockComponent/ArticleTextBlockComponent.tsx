@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { Text } from 'shared/ui/Text/Text'
 import { type ArticleTextBlock } from '../../../../entities/Article/model/types/article'
 import cls from './ArticleTextBlockComponent.module.scss'

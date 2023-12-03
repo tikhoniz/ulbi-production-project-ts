@@ -1,5 +1,5 @@
 import { memo, type ChangeEvent, type InputHTMLAttributes } from 'react'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './Input.module.scss'
 
 // Omit позволяет забрать из типа все пропсы и исключить которые не нужны

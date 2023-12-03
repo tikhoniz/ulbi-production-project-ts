@@ -1,6 +1,15 @@
 import { type ArticleType } from 'entities/Article/model/types/article'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { classNames } from 'shared/lib/classNames/classNames'
+import { useDebounce } from 'shared/lib/hooks/optimiseHooks/useDebounce'
+import {
+  useAppDispatch,
+  useAppSelector
+} from 'shared/lib/hooks/reduxHooks/reduxHooks'
+import { type SortOrder } from 'shared/types/sort'
+import { Card } from 'shared/ui/Card/Card'
+import { Input } from 'shared/ui/Input/Input'
 import {
   ArticleSortSelector,
   ArticleTypeTabs,
@@ -8,15 +17,6 @@ import {
   type ArticleSortField,
   type ArticleView
 } from '../../../../entities/Article'
-import { Card } from 'shared/ui/Card/Card'
-import { Input } from 'shared/ui/Input/Input'
-import { classNames } from 'shared/lib/classNames/classnames'
-import { useDebounce } from 'shared/lib/hooks/optimiseHooks/useDebounce'
-import {
-  useAppDispatch,
-  useAppSelector
-} from 'shared/lib/hooks/reduxHooks/reduxHooks'
-import { type SortOrder } from 'shared/types/sort'
 import {
   getArticlesPageOrder,
   getArticlesPageSearch,

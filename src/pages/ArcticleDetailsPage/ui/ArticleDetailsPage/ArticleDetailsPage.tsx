@@ -2,7 +2,7 @@ import { AddNewComment } from 'features/addNewComment'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import {
   DynamicModuleLoader,
   type ReducersList
@@ -14,17 +14,17 @@ import {
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Text, TextSize } from 'shared/ui/Text/Text'
 
-import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations'
-import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
-import { articleDetailsPageReducer } from '../../model/slices'
-import { getArticleRecommendations } from '../../model/slices/articleDetailsPageRecommendationsSlice'
 import { Page } from 'widgets/Page/Page'
 import { ArticleDetails, ArticleList } from '../../../../entities/Article'
 import { CommentList } from '../../../../entities/Comment'
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations'
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
+import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
+import { articleDetailsPageReducer } from '../../model/slices'
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice'
+import { getArticleRecommendations } from '../../model/slices/articleDetailsPageRecommendationsSlice'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'
 import cls from './ArticleDetailsPage.module.scss'
 

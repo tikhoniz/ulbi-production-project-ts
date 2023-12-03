@@ -1,6 +1,6 @@
-import { type HTMLAttributeAnchorTarget, memo } from 'react'
+import { memo, type HTMLAttributeAnchorTarget } from 'react'
 import { useTranslation } from 'react-i18next'
-import { classNames } from 'shared/lib/classNames/classnames'
+import { classNames } from 'shared/lib/classNames/classNames'
 import { Text, TextSize } from 'shared/ui/Text/Text'
 import { ArticleView, type Article } from '../../model/types/article'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'

@@ -1,5 +1,5 @@
 import { useMemo, type CSSProperties } from 'react'
-import { classNames, type Mods } from 'shared/lib/classNames/classnames'
+import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 import cls from './Avatar.module.scss'
 
 interface AvatarProps {
@@ -9,7 +9,12 @@ interface AvatarProps {
   size?: number
 }
 
-export const Avatar = ({ className, src, alt, size }: AvatarProps): JSX.Element => {
+export const Avatar = ({
+  className,
+  src,
+  alt,
+  size
+}: AvatarProps): JSX.Element => {
   const mods: Mods = {}
 
   const styles = useMemo<CSSProperties>(() => {
