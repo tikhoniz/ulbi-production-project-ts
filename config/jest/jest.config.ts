@@ -17,7 +17,16 @@ const config: Config = {
   // modulePaths: ['<rootDir>src'],
   modulePaths: ['<rootDir>/src'],
   // An array of file extensions your modules use
-  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
+  moduleFileExtensions: [
+    'js',
+    'mjs',
+    'cjs',
+    'jsx',
+    'ts',
+    'tsx',
+    'json',
+    'node'
+  ],
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../',
   // A list of paths to directories that Jest should use to search for files in
@@ -34,7 +43,21 @@ const config: Config = {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
-  }
+  },
+
+  reporters: [
+    // визуально показывает как прошли тесты
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '<rootDir>/reports/unit',
+        filename: 'report.html',
+        openReport: true,
+        inlineSource: true
+      }
+    ]
+  ]
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,

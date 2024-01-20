@@ -12,13 +12,18 @@ import { type AddNewCommentSchema } from 'features/addNewComment'
 import { type ArticleDetailsPageSchema } from 'pages/ArcticleDetailsPage/model/types'
 import { type ArticlePageSchema } from 'pages/ArticlesPage'
 import { type ArticleDetailsSchema } from '../../../../entities/Article'
-import type { ProfileSchema } from '../../../../entities/Profile'
 import type { UserSchema } from '../../../../entities/User'
+import { type rtkApi } from 'shared/api/rtkApi'
+import { type ProfileSchema } from 'features/editableProfileCard'
 
 export interface StateSchema {
   user: UserSchema
   // позиция скролла
   ui: UISchema
+  // типизация RTK query
+  // [rtkApi.reducerPath] - это путь до редьюсера
+  //  ReturnType<typeof rtkApi.reducer> - возвращаемое значение
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
   // асинхронные редьюсеры
   loginForm?: LoginSchema
   profile?: ProfileSchema

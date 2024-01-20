@@ -69,7 +69,7 @@ const articlesPageSlice = createSlice({
         ARTICLES_VIEW_LOCALSTORAGE_KEY
       ) as ArticleView
       state.view = view
-      state.limit = view === ArticleView.BAR ? 4 : 9
+      state.limit = view === ArticleView.BAR ? 4 : 12
       state._inited = true
     }
   },

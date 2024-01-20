@@ -49,5 +49,10 @@ export function buildPlugins({
     plugins.push(new ReactRefreshWebpackPlugin())
   }
 
+  // чтобы посмотреть на сборку в проде выносим BundleAnalyzerPlugin из скоупа вниз
+  // меняем openAnalyzer на true
+  // пишем npm run build:prod и по адресу http://127.0.0.1:8888/ смотрим бандл
+  // plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: true }))
+
   return plugins
 }

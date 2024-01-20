@@ -1,5 +1,4 @@
-import { AddNewComment } from 'features/addNewComment'
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classNames'
@@ -7,24 +6,16 @@ import {
   DynamicModuleLoader,
   type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import {
-  useAppDispatch,
-  useAppSelector
-} from 'shared/lib/hooks/reduxHooks/reduxHooks'
+import { useAppDispatch } from 'shared/lib/hooks/reduxHooks/reduxHooks'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
-import { Text, TextSize } from 'shared/ui/Text/Text'
 
+import { ArticleRecommendationList } from 'features/articleRecommendationList'
+import { VerticalStack } from 'shared/ui/Stack'
 import { Page } from 'widgets/Page/Page'
-import { ArticleDetails, ArticleList } from '../../../../entities/Article'
-import { CommentList } from '../../../../entities/Comment'
-import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
-import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations'
-import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
-import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
+import { ArticleDetails } from '../../../../entities/Article'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailsPageReducer } from '../../model/slices'
-import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice'
-import { getArticleRecommendations } from '../../model/slices/articleDetailsPageRecommendationsSlice'
+import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'
 import cls from './ArticleDetailsPage.module.scss'
 
@@ -41,28 +32,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps): JSX.Element => {
   const { t } = useTranslation('article')
   const { id } = useParams<{ id: string }>()
   const dispatch = useAppDispatch()
-
-  // получаем комментарии использую нормализацию данных
-  const comments = useAppSelector(getArticleComments.selectAll)
-  const commentsIsLoading = useAppSelector(getArticleCommentsIsLoading)
-  const recommendations = useAppSelector(getArticleRecommendations.selectAll)
-  const recommendationsIsLoading = useAppSelector(
-    getArticleRecommendationsIsLoading
-  )
-
-  const onSendComment = useCallback(
-    (text: string) => {
-      dispatch(addCommentForArticle(text))
-    },
-    [dispatch]
-  )
-
   // useInitialEffect используется для того, что бы получение данных не срабатывало, если идет иницилизация storybook
   useInitialEffect(() => {
     if (id) {
       dispatch(fetchCommentsByArticleId(id))
-      // получаем рекомендованные статьи
-      dispatch(fetchArticleRecommendations())
     }
   })
 
@@ -77,27 +50,14 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps): JSX.Element => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        <ArticleDetailsPageHeader />
-        <ArticleDetails id={id} />
-        <Text
-          size={TextSize.L}
-          className={cls.commentTitle}
-          title={t('Рекомендуем')}
-        />
-        {/* рекомендованные статьи */}
-        <ArticleList
-          articles={recommendations}
-          isLoading={recommendationsIsLoading}
-          className={cls.recommendations}
-          target='_blank'
-        />
-        <Text
-          size={TextSize.L}
-          className={cls.commentTitle}
-          title={t('comments')}
-        />
-        <AddNewComment onSendComment={onSendComment} />
-        <CommentList isLoading={commentsIsLoading} comments={comments} />
+        <VerticalStack gap='16' fullWidth>
+          <ArticleDetailsPageHeader />
+          {/* текст статьи */}
+          <ArticleDetails id={id} />
+          {/* рекомендованные статьи */}
+          <ArticleRecommendationList />
+          <ArticleDetailsComments id={id} />
+        </VerticalStack>
       </Page>
     </DynamicModuleLoader>
   )

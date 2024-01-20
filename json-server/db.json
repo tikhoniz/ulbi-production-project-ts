@@ -48,6 +48,24 @@
       "userId": "2",
       "text": "ssssss",
       "id": "g3zzQbi"
+    },
+    {
+      "articleId": "6",
+      "userId": "1",
+      "text": "zaxaa",
+      "id": "QOTXrn-"
+    },
+    {
+      "articleId": "6",
+      "userId": "1",
+      "text": "zrrtyyy",
+      "id": "fDu1d-Z"
+    },
+    {
+      "articleId": "6",
+      "userId": "1",
+      "text": "wwwwwwwww",
+      "id": "p7Io7Ji"
     }
   ],
   "articles": [
@@ -575,8 +593,8 @@
   "profile": [
     {
       "id": "1",
-      "first": "Hacker",
-      "lastname": "Neulovimov",
+      "first": "TIM",
+      "lastname": "Bright",
       "age": 27,
       "currency": "EUR",
       "country": "Armenia",

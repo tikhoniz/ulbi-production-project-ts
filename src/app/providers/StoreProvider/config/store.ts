@@ -7,18 +7,21 @@ import {
 import { $api } from 'shared/api/api'
 
 import { uiReducer } from 'features/UI'
+import { rtkApi } from 'shared/api/rtkApi'
 import { userReducer } from '../../../../entities/User'
-import { createReducerManager } from './reducerManager'
 import {
   type StateSchema,
   type StateSchemaKey,
   type ThunkExtraArg
 } from './StateSchema'
+import { createReducerManager } from './reducerManager'
 
 // обязательные редьюсеры
 const rootReducers: ReducersMapObject<StateSchema> = {
   user: userReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  // добавляем редьюсер для RTK query (https://redux-toolkit.js.org/rtk-query/overview)
+  [rtkApi.reducerPath]: rtkApi.reducer
 }
 // создаем менеджер редьюсеров для возможности добавлять их асинхронно
 const reducerManager = createReducerManager(rootReducers)
@@ -46,7 +49,8 @@ export function createReduxStore(
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: { extraArgument: extraArg }
-      })
+        // добавляем middleware для RTK query (https://redux-toolkit.js.org/rtk-query/overview)
+      }).concat(rtkApi.middleware)
   })
 
   // @ts-ignore

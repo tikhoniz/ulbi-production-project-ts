@@ -4,7 +4,7 @@ import ArticleEditPage from './ArticleEditPage'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 
 const meta: Meta<typeof ArticleEditPage> = {
-  title: 'pages/ArticleEditPage',
+  title: 'pages/articleEditPage/ArticleEditPage',
   component: ArticleEditPage
 }
 
